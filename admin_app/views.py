@@ -42,9 +42,11 @@ def delete_user(request, user_id):
     client = MongoClient("mongodb://localhost:27017/")
     db = client["Nhac"]
     user_collection = db["User"]
+    gmail_collection = db["UserGmail"]
 
     # Xóa người dùng với `id` tương ứng
     user_collection.delete_one({'_id': ObjectId(user_id)})
+    gmail_collection.delete_one({'_id': ObjectId(user_id)})
 
     # Redirect đến trang danh sách người dùng
     return redirect('admin_app:user')
