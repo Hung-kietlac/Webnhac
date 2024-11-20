@@ -1,0 +1,121 @@
+{% extends "app/navbar.html" %}
+
+{% load static %} 
+
+{% block main_content %}
+<link rel="stylesheet" href="{% static 'app/css/thuvien.css' %}">
+{% comment %} Nghệ Sĩ {% endcomment %}
+<div class="list-ns">
+  <div class="top-header">
+    <span class="highlight">Nghệ Sĩ</span>
+    <div class="show-more">Xem thêm</div> 
+  </div>
+  <div class="danhsach">
+      <div class="song-item">
+          <div class="song-image-wrapper">
+              <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+          </div>
+          <div class="song-info">
+              <div class="song-title">Mỹ Tâm</div>
+          </div>
+      </div>
+      <div class="song-item">
+          <div class="song-image-wrapper">
+              <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+          </div>
+          <div class="song-info">
+              <div class="song-title">Allan Walker</div>
+          </div>
+      </div>
+      <div class="song-item">
+          <div class="song-image-wrapper">
+              <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+          </div>
+          <div class="song-info">
+              <div class="song-title">Phan Mạnh Quỳnh</div>
+          </div>
+      </div>
+      <div class="song-item">
+          <div class="song-image-wrapper">
+              <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+          </div>
+          <div class="song-info">
+              <div class="song-title">Sơn Tùng MTP</div>
+          </div>
+      </div>
+      <div class="song-item">
+        <div class="song-image-wrapper">
+            <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+        </div>
+        <div class="song-info">
+            <div class="song-title">Hồ Ngọc Hà</div>
+        </div>
+    </div>
+    <div class="song-item">
+      <div class="song-image-wrapper">
+          <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+      </div>
+      <div class="song-info">
+          <div class="song-title">Hồ Ngọc Hà</div>
+      </div>
+  </div>
+  </div>  
+</div>
+{% comment %} Playlist {% endcomment %}
+<div class="playlist">
+  <div class="top-header">
+    <span class="highlight">Playlist</span>
+  </div>
+  <div class="list">
+      <div class="list-item">
+          <img class="list-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+          <div class="list-info">
+          <div class="list-title">Top Nhạc Trẻ</div>
+          </div>
+      </div>
+      <div class="list-item">
+        <img class="list-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+        <div class="list-info">
+        <div class="list-title">Top Âu Mỹ</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <img class="list-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+        <div class="list-info">
+        <div class="list-title">Top Âu MỸ</div>
+        </div>
+      </div>
+    <div class="list-item">
+      <img class="list-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+      <div class="list-info">
+      <div class="list-title">Top Âu Mỹ</div>
+      </div>
+    </div>
+    <div class="list-item">
+      <img class="list-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+      <div class="list-info">
+      <div class="list-title">Top Nhạc Trẻ</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} Bài hát yêu thích {% endcomment %}
+<div class="list-mix-container">
+  {% for song in listening_history %}
+      <div class="list-mix-1">
+        <div class="bai-hat">
+            <div class="ten-bh">{{ song.tenbaihat }}</div>
+            <div class="nghe-si">{{ song.tencasi }}</div>
+        </div>
+        <div class="the-loai">{{ song.theloai }}</div>
+        <img class="heart" src="{% static 'app/images/like.svg' %}" />
+        <div class="thoi-gian">{{ song.thoigian }}</div>
+        <div class="so-tt">{{ forloop.counter }}</div>
+      </div>
+  {% empty %}
+    <p>Bạn chưa nghe bài hát nào.</p>
+  {% endfor %}
+</div>
+</div>
+{% endblock %}

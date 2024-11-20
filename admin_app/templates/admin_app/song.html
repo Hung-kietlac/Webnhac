@@ -1,0 +1,90 @@
+{% extends "admin_app/navbar.html" %}
+
+{% load static %} 
+
+{% block main_content %}
+<link rel="stylesheet" href="{% static 'admin_app/css/song.css' %}">
+
+<div class="top">
+    <h1 class="text">Thông tin bài hát</h1>
+    <button class="add-song" onclick="openAddSongModal()">Thêm bài hát</button>
+
+    <div id="addSongModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddSongModal()">&times;</span>
+            <h2>Thêm Bài Hát Mới</h2>
+            <form id="addSongForm" method="POST" action="/admin_app/add_song/">
+                {% csrf_token %}
+                <label for="tenbaihat">Tên bài hát:</label>
+                <input type="text" id="tenbaihat" name="tenbaihat" required>
+
+                <label for="tencasi">Nghệ sĩ:</label>
+                <input type="text" id="tencasi" name="tencasi" required>
+
+                <label for="theloai">Thể loại:</label>
+                <input type="text" id="theloai" name="theloai" required>
+
+                <label for="linkbaihat">File nhạc:</label>
+                <input type="text" id="linkbaihat" name="linkbaihat" required>
+
+                <label for="thoiluong">Thời lượng:</label>
+                <input type="text" id="thoiluong" name="thoiluong" required>
+
+                <button type="submit">Thêm</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function openAddSongModal() {
+            document.getElementById("addSongModal").style.display = "block";
+        }
+    
+        function closeAddSongModal() {
+            document.getElementById("addSongModal").style.display = "none";
+        }
+
+        document.getElementById('linkbaihat').addEventListener('input', function () {
+            const urlField = this;
+            const urlError = document.getElementById('url-error');
+            const urlPattern = /^https?:\/\/.+\.mp3$/i; // Kiểm tra URL hợp lệ và kết thúc bằng .mp3
+    
+            if (urlPattern.test(urlField.value)) {
+                urlError.style.display = "none"; // URL hợp lệ
+            } else {
+                urlError.style.display = "block"; // URL không hợp lệ
+            }
+        });
+    </script>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Số thứ tự</th>
+            <th>Tên bài hát</th>
+            <th>Nghệ sĩ</th>
+            <th>Thể loại</th>
+            <th>File nhạc</th>
+            <th>Thời lượng</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for song in songs %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ song.tenbaihat }}</td>
+            <td>{{ song.tencasi }}</td>
+            <td>{{ song.theloai }}</td>
+            <td style="max-width: 100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{ song.linkbaihat }}</td>
+            <td>{{ song.thoigian }}</td>
+            <td>
+                <form method="POST" action="{% url 'admin_app:delete_song' song.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="delete">Xóa</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

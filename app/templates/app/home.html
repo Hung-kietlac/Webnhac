@@ -1,0 +1,145 @@
+{% extends "app/navbar.html" %}
+
+{% load static %}
+
+{% block main_content %}
+<link rel="stylesheet" href="{% static 'app/css/home.css' %}">
+
+<div class="tranding-songs">
+  <div class="top-header">
+    <span class="highlight">Gợi ý cho bạn</span>
+    <a href="{% url 'app:danhsachnhac' %}" class="view-all">Xem thêm</a> 
+  </div>
+
+  <div class="list-mix-container">
+    {% if songs %}
+      {% for song in songs %}
+        <div class="list-mix-1" data-link="{{ song.linkbaihat }}" method="POST" action="{% url 'app:thuvien' %}">
+          <div class="bai-hat">
+            <div class="ten-bh" name="song_name">{{ song.tenbaihat }}</div>
+            <div class="nghe-si" name="artist">{{ song.tencasi }}</div>
+          </div>
+          <div class="the-loai" name="genre">{{ song.theloai }}</div>
+          <img class="heart" src="{% static 'app/images/like.svg' %}" />
+          <div class="thoi-gian" name="duration">{{ song.thoigian }}</div>
+          <div class="so-tt">{{ forloop.counter }}</div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>Không tìm thấy bài hát hoặc ca sĩ phù hợp.</p>
+    {% endif %}
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const songElements = document.querySelectorAll('.list-mix-1');
+      
+      songElements.forEach(function (element) {
+        element.addEventListener('click', function () {
+          const songLink = this.getAttribute('data-link');
+          const songData = JSON.parse(this.getAttribute('data-song')); // Dữ liệu bài hát từ data-song
+          
+          playSong(songLink);
+          saveSongToLibrary(songData);
+        });
+      });
+    
+      // Hàm phát nhạc
+      function playSong(link) {
+        if (!link) {
+          console.error('Link bài hát không tồn tại!');
+          return;
+        }
+    
+        const audioPlayer = document.getElementById('audio-player');
+        const audioSource = document.getElementById('audio-source');
+    
+        if (!audioPlayer || !audioSource) {
+          console.error('Không tìm thấy phần tử audio-player hoặc audio-source!');
+          return;
+        }
+    
+        audioSource.src = link;
+        audioPlayer.load();  // Tải nhạc mới
+    
+        // Phát nhạc chỉ sau khi tải hoàn tất
+        audioPlayer.addEventListener('canplay', function handleCanPlay() {
+          audioPlayer.play()
+            .then(() => {
+              console.log('Bắt đầu phát nhạc');
+            })
+            .catch(err => {
+              console.error('Không thể phát nhạc:', err);
+            });
+          audioPlayer.removeEventListener('canplay', handleCanPlay);  // Xoá lắng nghe sau lần đầu
+        });
+      }
+
+      // Hàm lưu bài hát vào thư viện
+      function saveSongToLibrary(song) {
+        // Gửi bài hát qua AJAX để lưu vào thư viện
+        fetch("{% url 'app:thuvien' %}", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+          },
+          body: JSON.stringify({
+            song_name: song.tenbaihat,
+            artist: song.tencasi,
+            genre: song.theloai,
+            duration: song.thoigian
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            console.log("Bài hát đã được thêm vào thư viện!");
+          } else {
+            console.log("Lỗi khi thêm bài hát vào thư viện.");
+          }
+        })
+        .catch(error => console.error('Error:', error));
+      }
+    });
+  </script>
+</div>
+
+<div class="playlist">
+  <div class="top-header">
+    <span class="highlight">Playlist</span>
+  </div>
+  <div class="list">
+      <div class="list-item">
+          <img class="list-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+          <div class="list-info">
+          <div class="list-title">Top Nhạc Trẻ</div>
+          </div>
+      </div>
+      <div class="list-item">
+        <img class="list-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+        <div class="list-info">
+        <div class="list-title">Top Âu Mỹ</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <img class="list-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+        <div class="list-info">
+        <div class="list-title">Top Âu Mỹ</div>
+        </div>
+      </div>
+    <div class="list-item">
+      <img class="list-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+      <div class="list-info">
+      <div class="list-title">Top Âu Mỹ</div>
+      </div>
+    </div>
+    <div class="list-item">
+      <img class="list-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+      <div class="list-info">
+      <div class="list-title">Top Nhạc Trẻ</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

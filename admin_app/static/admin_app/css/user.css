@@ -1,0 +1,65 @@
+.top {
+    display: flex;  
+    justify-content: space-between; 
+    align-items: center;
+    padding: 16px; 
+    margin-top: 0px;
+}
+
+.add-user {
+    background-color: #48D1CC; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+}
+
+.add-user:hover {
+    background-color:  #3BAFA8; 
+}
+
+.user-table {
+    width: 100%; 
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.user-table th, .user-table td {
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: center; 
+    font-size: 20px;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.user-table th {
+    background-color: #f2f2f2; 
+}
+
+.edit-button, .delete-button {
+    background-color: #48D1CC;
+    color: white; 
+    padding: 5px 10px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-right: 5px;
+}
+
+.delete-button {
+    background-color: #f44336;
+}
+
+.edit-button:hover {
+    opacity: 0.8;
+    background-color: #3BAFA8;
+}
+.delete-button:hover {
+    opacity: 0.8;
+    background-color: #e53935; 
+}

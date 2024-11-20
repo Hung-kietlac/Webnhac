@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Web Nghe Nhạc</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'app/css/navbar.css' %}">
+    <style>
+        .sticky-part a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .header a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sticky-part">
+       <div class="title">Nhóm 9</div>
+        <a href="{% url 'app:home' %}" class="frame ">
+            <img class="icon" src="{% static 'app/images/home.png' %}" />
+            <div class="text">Trang chủ</div>
+        </a>
+        <a href="{% url 'app:danhsachnhac' %}" class="frame">
+            <img class="icon" src="{% static 'app/images/bar-chart-110.svg' %}" />
+            <div class="text">Danh sách nhạc</div>
+        </a>
+        <a href="{% url 'app:thuvien' %}" class="frame">
+            <img class="icon" src="{% static 'app/images/recent.svg' %}" />
+            <div class="text">Thư viện</div>
+        </a>
+        <div class="frame">
+            <img class="icon" src="{% static 'app/images/playlist.svg' %}" />
+            <div class="text">Tạo playlist</div>
+        </div>
+        <div class="frame logout">
+            <img class="icon" src="{% static 'app/images/log-out-030.svg' %}" />
+            <div class="text"> <a href="{% url 'app:dangnhap' %}">Đăng xuất</a></div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header" style="background-image: url('{% static 'app/images/nen.jpg' %}');">
+            <div class="search-bar">
+                <form method="GET" action="{% url 'app:home' %}">
+                    <img class="search" src="{% static 'app/images/icon0.svg' %}" onclick="this.parentElement.submit()" style="cursor: pointer;" />
+                    <input type="text" name="q" class="search-for-musics-artists" placeholder="Tìm kiếm ..." />
+                </form>
+            </div>
+        </div>
+        
+        <div class="main">
+            {% block main_content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <div class="music-pay-system">
+        <div class="controls">
+            <img class="vector" src="{% static 'app/images/lap.svg' %}" />
+            <img class="suffle-1" src="{% static 'app/images/mix.svg' %}" />
+            <img class="next-1" src="{% static 'app/images/next-1.svg' %}" />
+            <img class="stop" src="{% static 'app/images/stop.svg' %}" />
+            <img class="next-2" src="{% static 'app/images/next-2.svg' %}" />
+            <img class="like" src="{% static 'app/images/like.svg' %}" />
+            <img class="speaker-1" src="{% static 'app/images/volume.png' %}" />
+        </div>
+        <div class="time-info">
+            <div class="_0-51" id="current-time">0:00</div>
+            <div class="progress-bar">
+                <audio id="audio-player" ontimeupdate="updateProgressBar()">
+                    <source id="audio-source" src="{{ song.linkbaihat }}" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="_1-41" id="duration">0:00</div>
+        </div>
+        <script>
+            // Cập nhật khi thời gian thay đổi
+            function updateProgressBar() {
+                const audioPlayer = document.getElementById('audio-player');
+                const currentTimeDisplay = document.getElementById('current-time');
+                const durationDisplay = document.getElementById('duration');
+        
+                const currentTime = audioPlayer.currentTime;
+                const duration = audioPlayer.duration;
+        
+                // Kiểm tra nếu thời gian hợp lệ
+                if (!isNaN(duration)) {
+                    currentTimeDisplay.textContent = formatTime(currentTime);
+                    durationDisplay.textContent = formatTime(duration);
+                }
+            }
+        
+            // Chuyển đổi thời gian từ giây thành phút:giây
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+        
+            // Hàm phát nhạc
+            function playSong(link) {
+                const audioPlayer = document.getElementById('audio-player');
+                const audioSource = document.getElementById('audio-source');
+        
+                if (!link) {
+                    console.error('Link bài hát không tồn tại!');
+                    return;
+                }
+        
+                // Cập nhật nguồn nhạc
+                audioSource.src = link;
+                audioPlayer.load();  // Nạp lại nguồn nhạc
+                audioPlayer.play();  // Phát nhạc
+            }
+        </script>
+    </div>
+</body>
+</html>

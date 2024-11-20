@@ -1,0 +1,192 @@
+
+.khung-dang-nhap {
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(135deg, #629bf0 0%, #629bf0 80%); */
+}
+
+
+.hop-dang-nhap {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tieu-de-dang-nhap {
+    color: #1877f2;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    width: 100%;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+form {
+    width: 100%;
+    max-width: 320px;
+}
+
+
+
+.nhom-truong-nhap {
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.o-nhap-lieu {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    color: black;
+}
+
+.o-nhap-lieu::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.o-nhap-lieu:focus {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+    outline: none;
+}
+
+
+.lien-ket-quen-mk {
+    color: #1877f2;
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: inline-block;
+    font-weight: normal;
+    justify-content: center;
+}
+
+.lien-ket-quen-mk:hover {
+    text-decoration: underline;
+}
+
+
+.quen-mat-khau {
+    text-align: center;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+
+.nut-dang-nhap {
+    width: 100%;
+    padding: 0.75rem;
+    background: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem 0;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+}
+
+.nut-dang-nhap:hover {
+    background: #0d6efd;
+}
+
+
+.lien-ket-quen-mk, .lien-ket-dang-ky {
+    color: #1877f2;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 640px) {
+    .khung-dang-nhap {
+        background-position: center;
+    }
+    
+    .hop-dang-nhap {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+    }
+}
+
+
+.nut-mxh:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.o-nhap-lieu:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+
+.khung-dang-ky {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+}
+
+.lien-ket-dang-ky {
+    color: #1877f2;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 0.25rem;
+}
+
+.lien-ket-dang-ky:hover {
+    text-decoration: underline;
+}
+
+/* Căn giữa toàn bộ form */
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Căn giữa theo chiều dọc */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    height: 100vh; /* Đảm bảo form chiếm toàn bộ chiều cao màn hình */
+}
+
+/* Nếu bạn chỉ muốn căn giữa thẻ a */
+.form-container {
+    display: flex;
+    justify-content: center; /* Căn giữa nút theo chiều ngang */
+    margin-top: 20px; /* Khoảng cách trên nút */
+}
+
+/* Nút Google */
+.google-btn {
+    padding: 12px 20px;
+    background-color: #4285F4; /* Màu của Gmail */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.google-btn:hover {
+    background-color: #357ae8; /* Màu thay đổi khi hover */
+}
+
+.google-btn:focus {
+    outline: none;
+}

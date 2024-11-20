@@ -1,0 +1,44 @@
+{% extends "admin_app/navbar.html" %}
+
+{% load static %} 
+
+{% block main_content %}
+<link rel="stylesheet" href="{% static 'admin_app/css/user.css' %}">
+<div class="top">
+    <h1 class="text">Thông tin người dùng</h1>
+</div>
+
+<table class="user-table">
+    <thead>
+        <tr>
+            <th>Số thứ tự</th>
+            <th>Tên đăng nhập</th>
+            <th>Email</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if users %}
+            {% for user in users %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <!-- Sử dụng `id` thay vì `_id` -->
+                    <form method="POST" action="{% url 'admin_app:delete_user' user.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="4">Không có người dùng nào!</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}

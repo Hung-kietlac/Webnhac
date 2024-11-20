@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/dangky.css' %}">
+
+    <style>
+        body {
+            background-image: url("{% static 'app/images/background.jpg' %}"); /* Đường dẫn tới ảnh nền */
+            background-size: cover; /* Đảm bảo ảnh phủ kín toàn bộ trang */
+            background-position: center; /* Căn giữa ảnh */
+            background-repeat: no-repeat;
+        }
+        .khung-dang-ky {
+            background: none; /* Đảm bảo không có nền màu xanh */
+        }
+    </style>
+</head>
+<body>
+    <div class="khung-dang-ky">
+        <div class="hop-dang-ky">
+            <h2 class="tieu-de-dang-ky">Đăng ký tài khoản</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="nhom-truong-nhap">
+                    <input type="text" class="o-nhap-lieu" name="username" placeholder="Tên đăng nhập" required>
+                </div>
+                <div class="nhom-truong-nhap">
+                    <input type="email" class="o-nhap-lieu" name="email" placeholder="Email" required>
+                </div>
+                <div class="nhom-truong-nhap">
+                    <input type="password" class="o-nhap-lieu" name="password" placeholder="Mật khẩu" required>
+                </div>
+                <div class="nhom-truong-nhap">
+                    <input type="password" class="o-nhap-lieu" name="confirm_password" placeholder="Xác nhận mật khẩu" required>
+                </div>
+                <button type="submit" class="nut-dang-ky">Đăng ký</button>
+            </form>
+            <div class="khung-dang-nhap">
+                <span>Đã có tài khoản?</span>
+                <a href="{% url 'app:dangnhap' %}" class="lien-ket-dang-nhap">Đăng nhập</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,183 @@
+body {
+  scrollbar-width: none;
+  height: 100vh;
+  margin: 0;
+}
+
+.top-header {
+  display: flex;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 25px;
+  justify-content: space-between;
+}
+
+.highlight {
+  color: #333;
+  font-size: 30px;
+  font-weight: 400;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.view-all {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 25px;
+  font-weight: 400;
+  color: #48D1CC; 
+  text-decoration: none;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+
+button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.list-mix-container {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px; 
+  overflow: auto;
+  padding-right: 10px;
+}
+
+.list-mix-1 {
+  border-radius: 6px;
+  flex-shrink: 0;
+  height: 70px;
+  position: relative;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ 
+.bai-hat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 100px;
+  top: 13px;
+}
+
+.ten-bh {
+  text-align: left;
+  font-family: "Times New Roman", Times, serif;
+  color: #222;
+  font-size: 20px;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  position: relative;
+  width: 210px;
+}
+
+.nghe-si {
+  color: #4d4d4d;
+  text-align: left;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+  font-weight: 400;
+  position: relative;
+  width: 227px;
+}
+
+.the-loai {
+  text-align: left;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 93px);
+  top: 24px;
+  width: 207px;
+}
+
+.heart {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  right: 139px;
+  top: 22px;
+  overflow: visible;
+}
+
+.thoi-gian{
+  color: #333;
+  text-align: left;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  right: 63px;
+  top: 23px;
+}
+
+.so-tt {
+  font-size: 24px; 
+  font-weight: bold; 
+  color: #333; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  left: 40px;
+}
+
+/* Playlist */
+.playlist {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+  
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-left: 40px;
+}
+  
+.list-item {
+  background: #A9A9A9;
+  border-radius: 10px;
+  width: 160px; 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px; 
+  overflow: hidden; 
+}
+
+.list-image {
+  width: 100%;
+  height: 120px; 
+  border-radius: 10px ; 
+  object-fit: cover;
+}
+
+.list-info {
+  padding: 8px; 
+  border-radius: 0 0 10px 10px; 
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.list-title {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px; 
+  font-weight: 500;
+  color: #ffffff; 
+}

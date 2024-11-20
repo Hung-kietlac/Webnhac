@@ -1,0 +1,212 @@
+body {
+    scrollbar-width: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh; 
+    overflow: hidden;
+}
+
+.sticky-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15%;
+    background-color:#B0E0E6;
+    padding: 20px 0;
+    flex-shrink: 0;
+}
+
+.sticky-part .title {
+    font-size: 40px;
+    font-weight: bold;
+    color: #222;
+    align-items: center;
+    margin-bottom:100px;
+}
+
+.sticky-part .frame {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 10px 15px;
+    margin: 5px 0;
+    cursor: pointer;
+    padding-left: 35px; 
+}
+
+.sticky-part .frame.logout {
+    margin-top: 180px;
+}
+
+.sticky-part .frame .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.sticky-part .frame .text {
+    font-size: 20px;
+    color: #333;
+}
+
+.sticky-part .frame:hover .icon,
+.sticky-part .frame:hover .text {
+    color: #ffffff; 
+}
+
+
+.main {
+    padding: 20px 50px 100px;
+    width:85%;
+    overflow-y: 100%;
+    overflow: hidden; 
+} 
+
+.main-content {
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+    padding: 30px;
+    margin-bottom: 20px;
+    height: 160px; 
+    margin-bottom: 20px;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    color: #ffffff; /
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background:  #ffffff;
+    border-radius: 10px;
+    padding: 6px 10px;
+    width: 60%;
+    max-width: 500px;
+    height: 30px;
+    margin: 0 auto; 
+    border: 1px solid #000000;
+}
+
+.search {
+    width: 25px;
+    height: 25px;
+    margin-right: 8px;
+}
+
+.search-for-musics-artists {
+    color: #000000; 
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+    font-weight: 300;
+    opacity: 0.6;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    align-items: top;
+    margin-left: auto; 
+}
+
+.button {
+    border-radius: 4px;
+    padding: 6px 15px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.login, .signup {
+    color: #ffffff;
+    background: #48D1CC;
+    border: none;
+}
+
+.music-pay-system {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #fff;
+    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 1000; 
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.controls img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain; 
+    padding: 20px;
+} 
+
+.music-pay-system img {
+    margin: 0 5px; 
+}
+
+.vector {
+    width: 24px;  
+    height: 24px; 
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+._0-51, ._1-41 {
+    font-family: "Poppins-Regular", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+._1-41 {
+    color: #838383;
+}
+
+.progress-bar {
+    flex-grow: 1; 
+    height: 5px;
+    background: #575656;
+    border-radius: 10px;
+    margin: 0 10px; 
+}

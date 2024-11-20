@@ -1,0 +1,105 @@
+{% extends "admin_app/navbar.html" %}
+
+{% load static %} 
+
+{% block main_content %}
+<link rel="stylesheet" href="{% static 'admin_app/css/playlist.css' %}">
+
+
+
+<div class="top">
+    <h1 class="text">Thông tin playlist</h1>
+    <button class="add-playlist">Thêm playlist </button>
+</div>
+
+<div class="playlist-management"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Số thứ tự</th>
+                <th>Ảnh đại diện</th>
+                <th>Tên playlist</th>
+                <th>Số bài hát</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>images1.img</td>
+                <td>Playlist 1</td>
+                <td>10</td>
+                <td>
+                    <button class="view" onclick="openModal('playlist1-songs')">Xem </button>
+                    <button class="edit">Sửa</button>
+                    <button class="delete">Xóa</button>
+                </td>
+            </tr>
+       
+        </tbody>
+    </table>
+</div>
+
+<div id="songModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Bài hát trong Playlist</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Số thứ tự</th>
+                    <th>Tên bài hát</th>
+                    <th>Nghệ sĩ</th>
+                    <th>Thể loại</th>
+                    <th>File nhạc</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="songList">
+                <tr>
+                    <td>1</td>
+                    <td>That Girl</td>
+                    <td>Olly Murs</td>
+                    <td>Pop</td>
+                    <td>thatgirl.mp3</td>
+                    <td>
+                        <button class="delete">Xóa</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Nothin' on Me</td>
+                    <td>Leah Marie Perez</td>
+                    <td>Pop</td>
+                    <td>file1.mp3</td>
+                    <td>
+                        <button class="delete">Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function openModal(playlistId) {
+        // Hiển thị modal
+        document.getElementById("songModal").style.display = "block";
+    
+        // Tại đây, bạn có thể thêm logic để lấy danh sách bài hát từ server nếu cần
+    }
+    
+    function closeModal() {
+        // Ẩn modal
+        document.getElementById("songModal").style.display = "none";
+    }
+    
+    // Đóng modal khi nhấn ra ngoài modal
+    window.onclick = function(event) {
+        const modal = document.getElementById("songModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    </script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "admin_app/navbar.html" %}
+
+{% load static %} 
+
+{% block main_content %}
+<link rel="stylesheet" href="{% static 'admin_app/css/category.css' %}">
+
+<div class="top">
+    <h1 class="text">Thông tin thể loại</h1>
+    <button class="add-category">Thêm thể loại </button>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Số thứ tự</th>
+            <th>Tên thể loại</th>
+            <th>Số bài hát</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+            <td>1</td>
+            <td>Pop</td>
+            <td>50</td>
+            <td>
+                <button class="edit">Sửa</button>
+                <button class="delete">Xóa</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>EDM</td>
+            <td>50</td>
+            <td>
+                <button class="edit">Sửa</button>
+                <button class="delete">Xóa</button>
+            </td>
+        </tr>
+   
+    </tbody>
+</table>
+
+{% endblock %}
