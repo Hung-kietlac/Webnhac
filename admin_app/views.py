@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from bson import ObjectId
 from django.http import JsonResponse
 from bson.errors import InvalidDocument
+import os
 
 def admin_home(request):
     myclient = MongoClient("mongodb://localhost:27017/")
@@ -78,43 +79,57 @@ def delete_song(request, song_id):
 def add_song(request):
     if request.method == "POST":
         try:
+            # Kết nối MongoDB
             myclient = MongoClient("mongodb://localhost:27017/")
             mydb = myclient["Nhac"]
             mycol = mydb["Nhac"]
 
+            # Lấy dữ liệu từ form
             tenbaihat = request.POST.get("tenbaihat", "").strip()
             tencasi = request.POST.get("tencasi", "").strip()
             theloai = request.POST.get("theloai", "").strip()
-            linkbaihat = request.FILES.get("linkbaihat")  # Lấy file nhạc từ request
+            linkbaihat = request.FILES.get("linkbaihat")
             thoiluong = request.POST.get("thoiluong", "").strip()
 
             # Kiểm tra dữ liệu hợp lệ
             if not all([tenbaihat, tencasi, theloai, linkbaihat, thoiluong]):
                 return JsonResponse({"error": "Vui lòng điền đầy đủ thông tin!"}, status=400)
 
+            # Kiểm tra định dạng file nhạc
+            allowed_extensions = ['mp3']
+            file_extension = linkbaihat.name.split('.')[-1].lower()
+            if file_extension not in allowed_extensions:
+                return JsonResponse({"error": "Định dạng file không được hỗ trợ! Chỉ chấp nhận mp3!"}, status=400)
+
+            # Xây dựng đường dẫn lưu file nhạc
+            static_dir = os.path.join(os.getcwd(), 'static', 'app', 'FileNhac')
+            os.makedirs(static_dir, exist_ok=True)  # Tạo thư mục nếu chưa tồn tại
+            file_path = os.path.join(static_dir, linkbaihat.name)
+
             # Lưu file nhạc vào thư mục static
-            file_path = f'static/app/filenhac/{linkbaihat.name}'
             with open(file_path, 'wb+') as destination:
                 for chunk in linkbaihat.chunks():
                     destination.write(chunk)
 
-            # Tạo document mới
+            # Tạo document mới cho MongoDB
             new_song = {
                 "tenbaihat": tenbaihat,
                 "tencasi": tencasi,
                 "theloai": theloai,
-                "linkbaihat": file_path,  # Lưu đường dẫn file nhạc
+                "linkbaihat": f"/static/app/FileNhac/{linkbaihat.name}",  # Đường dẫn tĩnh
                 "thoigian": thoiluong,
             }
 
-            # Thêm vào MongoDB
+            # Thêm dữ liệu vào MongoDB
             mycol.insert_one(new_song)
 
             # Chuyển hướng về trang danh sách bài hát
             return redirect('/admin_app/song')
 
-        except InvalidDocument:
-            return JsonResponse({"error": "Lỗi khi lưu dữ liệu! Vui lòng kiểm tra lại."}, status=500)
+        except InvalidDocument as e:
+            return JsonResponse({"error": f"Lỗi khi lưu dữ liệu vào MongoDB: {str(e)}"}, status=500)
+        except OSError as e:
+            return JsonResponse({"error": f"Lỗi khi lưu file nhạc: {str(e)}"}, status=500)
         except Exception as e:
             return JsonResponse({"error": f"Lỗi không xác định: {str(e)}"}, status=500)
 
