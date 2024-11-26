@@ -66,7 +66,7 @@
             <img class="vector" src="{% static 'app/images/lap.svg' %}" />
             <img class="suffle-1" src="{% static 'app/images/mix.svg' %}" />
             <img class="next-1" src="{% static 'app/images/next-1.svg' %}" />
-            <img class="stop" src="{% static 'app/images/stop.svg' %}" />
+            <img class="stop" src="{% static 'app/images/stop.svg' %}" onclick="togglePlayPause()" />
             <img class="next-2" src="{% static 'app/images/next-2.svg' %}" />
             <img class="like" src="{% static 'app/images/like.svg' %}" />
             <img class="speaker-1" src="{% static 'app/images/volume.png' %}" />
@@ -118,6 +118,17 @@
                 audioSource.src = link;
                 audioPlayer.load();  // Nạp lại nguồn nhạc
                 audioPlayer.play();  // Phát nhạc
+            }
+        
+            // Hàm dừng và phát nhạc
+            function togglePlayPause() {
+                const audioPlayer = document.getElementById('audio-player');
+                
+                if (audioPlayer.paused) {
+                    audioPlayer.play();  // Phát nhạc
+                } else {
+                    audioPlayer.pause();  // Dừng nhạc
+                }
             }
         </script>
     </div>
