@@ -85,22 +85,25 @@ def add_song(request):
             tenbaihat = request.POST.get("tenbaihat", "").strip()
             tencasi = request.POST.get("tencasi", "").strip()
             theloai = request.POST.get("theloai", "").strip()
-            linkbaihat = request.POST.get("linkbaihat", "").strip()
+            linkbaihat = request.FILES.get("linkbaihat")  # Lấy file nhạc từ request
             thoiluong = request.POST.get("thoiluong", "").strip()
 
             # Kiểm tra dữ liệu hợp lệ
             if not all([tenbaihat, tencasi, theloai, linkbaihat, thoiluong]):
                 return JsonResponse({"error": "Vui lòng điền đầy đủ thông tin!"}, status=400)
 
-            if not linkbaihat.endswith(".mp3"):
-                return JsonResponse({"error": "Link bài hát phải kết thúc bằng '.mp3'!"}, status=400)
+            # Lưu file nhạc vào thư mục static
+            file_path = f'static/app/filenhac/{linkbaihat.name}'
+            with open(file_path, 'wb+') as destination:
+                for chunk in linkbaihat.chunks():
+                    destination.write(chunk)
 
             # Tạo document mới
             new_song = {
                 "tenbaihat": tenbaihat,
                 "tencasi": tencasi,
                 "theloai": theloai,
-                "linkbaihat": linkbaihat,
+                "linkbaihat": file_path,  # Lưu đường dẫn file nhạc
                 "thoigian": thoiluong,
             }
 
