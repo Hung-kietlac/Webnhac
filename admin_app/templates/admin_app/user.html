@@ -25,8 +25,7 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                    <!-- Sử dụng `id` thay vì `_id` -->
-                    <form method="POST" action="{% url 'admin_app:delete_user' user.id %}">
+                    <form method="POST" action="{% url 'admin_app:delete_user' user.id %}" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này không?');">
                         {% csrf_token %}
                         <button type="submit" class="delete-button">Xóa</button>
                     </form>

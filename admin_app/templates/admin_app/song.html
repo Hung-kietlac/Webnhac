@@ -12,28 +12,41 @@
     <div id="addSongModal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close" onclick="closeAddSongModal()">&times;</span>
-            <h2>Thêm Bài Hát Mới</h2>
-            <form id="addSongForm" method="POST" action="/admin_app/add_song/">
+            <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Thêm Bài Hát Mới</h2>
+            <form id="addSongForm" method="POST" action="/admin_app/add_song/" enctype="multipart/form-data">
                 {% csrf_token %}
-                <label for="tenbaihat">Tên bài hát:</label>
-                <input type="text" id="tenbaihat" name="tenbaihat" required>
-
-                <label for="tencasi">Nghệ sĩ:</label>
-                <input type="text" id="tencasi" name="tencasi" required>
-
-                <label for="theloai">Thể loại:</label>
-                <input type="text" id="theloai" name="theloai" required>
-
-                <label for="linkbaihat">File nhạc:</label>
-                <input type="text" id="linkbaihat" name="linkbaihat" required>
-
-                <label for="thoiluong">Thời lượng:</label>
-                <input type="text" id="thoiluong" name="thoiluong" required>
-
-                <button type="submit">Thêm</button>
+                <div class="form-group">
+                    <label for="tenbaihat">Tên bài hát:</label>
+                    <input type="text" id="tenbaihat" name="tenbaihat" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="tencasi">Nghệ sĩ:</label>
+                    <input type="text" id="tencasi" name="tencasi" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="theloai">Thể loại:</label>
+                    <input type="text" id="theloai" name="theloai" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="linkbaihat">File nhạc:</label>
+                    <input type="file" id="linkbaihat" name="linkbaihat" accept=".mp3" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="thoiluong">Thời lượng:</label>
+                    <input type="text" id="thoiluong" name="thoiluong" required>
+                </div>
+    
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="submit" class="submit-btn">Thêm</button>
+                </div>
             </form>
         </div>
     </div>
+    
     <script>
         function openAddSongModal() {
             document.getElementById("addSongModal").style.display = "block";
@@ -42,16 +55,20 @@
         function closeAddSongModal() {
             document.getElementById("addSongModal").style.display = "none";
         }
+        
+        function confirmDelete() {
+            return confirm("Bạn có chắc chắn muốn xóa bài hát này không?");
+        }
 
         document.getElementById('linkbaihat').addEventListener('input', function () {
             const urlField = this;
             const urlError = document.getElementById('url-error');
-            const urlPattern = /^https?:\/\/.+\.mp3$/i; // Kiểm tra URL hợp lệ và kết thúc bằng .mp3
+            const urlPattern = /^https?:\/\/.+\.mp3$/i; 
     
             if (urlPattern.test(urlField.value)) {
-                urlError.style.display = "none"; // URL hợp lệ
+                urlError.style.display = "none"; 
             } else {
-                urlError.style.display = "block"; // URL không hợp lệ
+                urlError.style.display = "block"; 
             }
         });
     </script>
@@ -78,7 +95,7 @@
             <td style="max-width: 100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{ song.linkbaihat }}</td>
             <td>{{ song.thoigian }}</td>
             <td>
-                <form method="POST" action="{% url 'admin_app:delete_song' song.id %}" style="display:inline;">
+                <form method="POST" action="{% url 'admin_app:delete_song' song.id %}" style="display:inline;" onsubmit="return confirmDelete();">
                     {% csrf_token %}
                     <button type="submit" class="delete">Xóa</button>
                 </form>
