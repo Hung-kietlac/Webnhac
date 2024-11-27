@@ -103,6 +103,11 @@ def add_song(request):
             if file_extension not in allowed_extensions:
                 return JsonResponse({"error": "Định dạng file không được hỗ trợ! Chỉ chấp nhận mp3!"}, status=400)
 
+            # Tính toán thời gian bài hát
+            audio = mutagen.File(linkbaihat)
+            thoigian = audio.info.length
+            thoigian_str = str(int(thoigian // 60)) + ":" + str(int(thoigian % 60)).zfill(2)
+
             # Xây dựng đường dẫn lưu file nhạc
             static_dir = os.path.join(os.getcwd(), 'static', 'app', 'FileNhac')
             os.makedirs(static_dir, exist_ok=True)  # Tạo thư mục nếu chưa tồn tại
@@ -119,6 +124,7 @@ def add_song(request):
                 "tencasi": tencasi,
                 "theloai": theloai,
                 "linkbaihat": f"/static/app/FileNhac/{linkbaihat.name}",  # Đường dẫn tĩnh
+                "thoigian": thoigian_str  # Thêm thời gian bài hát
             }
 
             # Thêm dữ liệu vào MongoDB
