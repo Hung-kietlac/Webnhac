@@ -11,14 +11,16 @@ def admin_home(request):
     users_collection = mydb["User"]
     gmail_collection = mydb["UserGmail"]
     songs_collection = mydb["Nhac"]
+    artist_collection = mydb["Artist"]
 
     total_users = users_collection.count_documents({})
     total_gmails = gmail_collection.count_documents({})
     total_songs = songs_collection.count_documents({})
+    total_artists = artist_collection.count_documents({})
 
     total_users_combined = total_users + total_gmails
 
-    return render(request, 'admin_app/admin_home.html', {'total_users': total_users_combined, 'total_songs': total_songs})
+    return render(request, 'admin_app/admin_home.html', {'total_users': total_users_combined, 'total_songs': total_songs, 'total_artists': total_artists})
 
 def user(request):
     client = MongoClient("mongodb://localhost:27017/")
@@ -137,7 +139,118 @@ def add_song(request):
     return JsonResponse({"error": "Phương thức không hợp lệ!"}, status=400)
 
 def artist(request):
-    return render(request, 'admin_app/artist.html')
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["Nhac"]
+    artist_collection = db["Artist"]
+    songs_collection = db["Nhac"]  # Kết nối đến collection bài hát
+
+    # Lấy danh sách nghệ sĩ từ MongoDB
+    artists = list(artist_collection.find())
+
+    # Chuyển ObjectId sang chuỗi và đếm số bài hát cho mỗi nghệ sĩ
+    for artist in artists:
+        artist['id'] = str(artist.pop('_id'))
+        artist['so_bai_hat'] = songs_collection.count_documents({"tencasi": artist['tencasi']})  # Đếm số bài hát của nghệ sĩ
+
+    return render(request, 'admin_app/artist.html', {'artists': artists})
+
+def add_artist(request):
+    if request.method == "POST":
+        try:
+            client = MongoClient("mongodb://localhost:27017/")
+            db = client["Nhac"]
+            artist_collection = db["Artist"]
+
+            # Lấy dữ liệu từ form
+            tencasi = request.POST.get("tencasi", "").strip()
+            anh_dai_dien = request.FILES.get("anh_dai_dien")
+
+            # Kiểm tra dữ liệu hợp lệ
+            if not all([tencasi, anh_dai_dien]):
+                return JsonResponse({"error": "Vui lòng điền đầy đủ thông tin!"}, status=400)
+
+            # Lưu ảnh đại diện vào thư mục
+            static_dir = os.path.join(os.getcwd(), 'static', 'app', 'FileArtist')
+            os.makedirs(static_dir, exist_ok=True)
+            file_path = os.path.join(static_dir, anh_dai_dien.name)
+
+            with open(file_path, 'wb+') as destination:
+                for chunk in anh_dai_dien.chunks():
+                    destination.write(chunk)
+
+            # Tạo document mới cho MongoDB
+            new_artist = {
+                "tencasi": tencasi,
+                "anh_dai_dien": f"/static/app/FileArtist/{anh_dai_dien.name}",
+                # "so_bai_hat": 0,  # Không cần lưu trường này
+            }
+
+            # Thêm dữ liệu vào MongoDB
+            artist_collection.insert_one(new_artist)
+
+            return redirect('/admin_app/artist')
+
+        except Exception as e:
+            return JsonResponse({"error": f"Lỗi không xác định: {str(e)}"}, status=500)
+
+    return JsonResponse({"error": "Phương thức không hợp lệ!"}, status=400)
+
+def delete_artist(request, artist_id):
+    if request.method == "DELETE":
+        client = MongoClient("mongodb://localhost:27017/")
+        db = client["Nhac"]
+        artist_collection = db["Artist"]
+
+        # Xóa nghệ sĩ với `id` tương ứng
+        artist_collection.delete_one({'_id': ObjectId(artist_id)})
+
+        # Trả về phản hồi thành công
+        return JsonResponse({"message": "Nghệ sĩ đã được xóa thành công!"}, status=200)
+
+    return JsonResponse({"error": "Phương thức không hợp lệ!"}, status=400)
+
+def edit_artist(request):
+    if request.method == "POST":
+        try:
+            client = MongoClient("mongodb://localhost:27017/")
+            db = client["Nhac"]
+            artist_collection = db["Artist"]
+
+            # Lấy dữ liệu từ form
+            artist_id = request.POST.get("artist_id")
+            tencasi = request.POST.get("tencasi", "").strip()
+            anh_dai_dien = request.FILES.get("anh_dai_dien")
+
+            # Kiểm tra dữ liệu hợp lệ
+            if not all([artist_id, tencasi]):
+                return JsonResponse({"error": "Vui lòng điền đầy đủ thông tin!"}, status=400)
+
+            # Cập nhật thông tin nghệ sĩ
+            update_data = {
+                "tencasi": tencasi,
+            }
+
+            if anh_dai_dien:
+                # Lưu ảnh đại diện mới vào thư mục
+                static_dir = os.path.join(os.getcwd(), 'static', 'app', 'FileArtist')
+                os.makedirs(static_dir, exist_ok=True)
+                file_path = os.path.join(static_dir, anh_dai_dien.name)
+
+                with open(file_path, 'wb+') as destination:
+                    for chunk in anh_dai_dien.chunks():
+                        destination.write(chunk)
+
+                update_data["anh_dai_dien"] = f"/static/app/FileArtist/{anh_dai_dien.name}"
+
+            # Cập nhật dữ liệu vào MongoDB
+            artist_collection.update_one({'_id': ObjectId(artist_id)}, {"$set": update_data})
+
+            return redirect('/admin_app/artist')
+
+        except Exception as e:
+            return JsonResponse({"error": f"Lỗi không xác định: {str(e)}"}, status=500)
+
+    return JsonResponse({"error": "Phương thức không hợp lệ!"}, status=400)
 
 def playlist(request):
     return render(request, 'admin_app/playlist.html')

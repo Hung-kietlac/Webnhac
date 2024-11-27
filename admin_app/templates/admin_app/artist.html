@@ -6,41 +6,135 @@
 <link rel="stylesheet" href="{% static 'admin_app/css/artist.css' %}">
 
 <div class="top">
-    <h1 class="text">Thông tin nghệ sĩ</h1>
-    <button class="add-artist">Thêm nghệ sĩ</button>
-</div>
+    <h1 class="text">Danh sách ca sĩ</h1>
+    <button class="add-artist" onclick="openAddArtistModal()">Thêm ca sĩ</button>
 
+
+    <div id="addArtistModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddArtistModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Thêm Ca Sĩ Mới</h2>
+            <form id="addArtistForm" method="POST" action="/admin_app/add_artist/" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="tencasi">Tên ca sĩ:</label>
+                    <input type="text" id="tencasi" name="tencasi" placeholder="Nhập tên ca sĩ" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="anh_dai_dien">Ảnh đại diện:</label>
+                    <input type="file" id="anh_dai_dien" name="anh_dai_dien" accept="image/*" required>
+                </div>
+            
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="submit" class="submit-btn">Thêm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script>
+    function openAddArtistModal() {
+        document.getElementById("addArtistModal").style.display = "block";
+    }
+
+    function closeAddArtistModal() {
+        document.getElementById("addArtistModal").style.display = "none";
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Kiểm tra xem cookie có tên cần tìm không
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function confirmDeleteArtist(artistId) {
+        if (confirm("Bạn có chắc chắn muốn xóa nghệ sĩ này?")) {
+            const csrftoken = getCookie('csrftoken');  // Lấy mã thông báo CSRF
+
+            fetch(`/admin_app/delete_artist/${artistId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': csrftoken,  // Thêm mã thông báo CSRF vào tiêu đề
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    location.reload();  // Tải lại trang để cập nhật danh sách nghệ sĩ
+                } else {
+                    alert("Có lỗi xảy ra khi xóa nghệ sĩ.");
+                }
+            });
+        }
+    }
+
+    function openEditArtistModal(artistId, artistName, artistImage) {
+        document.getElementById("editArtistModal").style.display = "block";
+        document.getElementById("editArtistId").value = artistId;
+        document.getElementById("editTencasi").value = artistName;
+        document.getElementById("editAnhDaiDienPreview").src = artistImage;
+    }
+
+    function closeEditArtistModal() {
+        document.getElementById("editArtistModal").style.display = "none";
+    }
+</script>
+</div>
 <table>
     <thead>
         <tr>
             <th>Số thứ tự</th>
-            <th>Ảnh đại diện </th>
-            <th>Tên nghệ sĩ</th>
+            <th>Tên ca sĩ</th>
             <th>Số bài hát</th>
+            <th>Ảnh đại diện</th>
             <th>Hành động</th>
         </tr>
     </thead>
     <tbody>
+        {% for artist in artists %}
         <tr>
-            <td>1</td>
-            <td>sontung.img</td>
-            <td>Sơn Tùng</td>
-            <td>30</td>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ artist.tencasi }}</td>
+            <td>{{ artist.so_bai_hat }}</td>
+            <td><img src="{{ artist.anh_dai_dien }}" alt="{{ artist.tencasi }}" style="width: 50px; height: 50px;"></td>
             <td>
-                <button class="edit">Sửa</button>
-                <button class="delete">Xóa</button>
+                <button onclick="openEditArtistModal('{{ artist.id }}', '{{ artist.tencasi }}', '{{ artist.anh_dai_dien }}')" class="edit">Sửa</button>
+                <button onclick="confirmDeleteArtist('{{ artist.id }}')" class="delete">Xóa</button>
             </td>
         </tr>
-        <tr>
-            <td>2</td>
-            <td>alan-walker.img</td>
-            <td>Alan Walker</td>
-            <td>40</td>
-            <td>
-                <button class="edit">Sửa</button>
-                <button class="delete">Xóa</button>
-            </td>
-        </tr>
+        {% endfor %}
     </tbody>
 </table>
+
+<div id="editArtistModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeEditArtistModal()">&times;</span>
+        <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Chỉnh Sửa Ca Sĩ</h2>
+        <form id="editArtistForm" method="POST" action="/admin_app/edit_artist/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" id="editArtistId" name="artist_id">
+            <div class="form-group">
+                <label for="editTencasi">Tên ca sĩ:</label>
+                <input type="text" id="editTencasi" name="tencasi" placeholder="Nhập tên ca sĩ" required>
+            </div>
+            <div class="form-group">
+                <label for="editAnhDaiDien">Ảnh đại diện:</label>
+                <input type="file" id="editAnhDaiDien" name="anh_dai_dien" accept="image/*">
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="submit" class="submit-btn">Cập nhật</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

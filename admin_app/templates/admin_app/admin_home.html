@@ -22,9 +22,9 @@
   
   
   <a href="{% url 'admin_app:artist' %}" class="card bg-orange">
-    <h3 class="card-title">Tổng số nghệ sĩ </h3>
+    <h3 class="card-title">Tổng số ca sĩ </h3>
     <p class="card-value text-green">
-      40
+      {{ total_artists }}  <!-- Hiển thị tổng số ca sĩ -->
     </p>
   </a>
 

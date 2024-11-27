@@ -6,60 +6,23 @@
 <link rel="stylesheet" href="{% static 'app/css/danhsachnhac.css' %}">
 
     <div class="list-ns">
-      <div class="top-header">
-        <span class="highlight">Nghệ Sĩ</span>
+        <div class="top-header">
+            <span class="highlight">Ca sĩ</span>
         <div class="show-more">Xem thêm</div>
-      </div>
-      <div class="danhsach">
-          <div class="song-item">
-              <div class="song-image-wrapper">
-                  <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
-              </div>
-              <div class="song-info">
-                  <div class="song-title">Mỹ Tâm</div>
-              </div>
-          </div>
-          <div class="song-item">
-              <div class="song-image-wrapper">
-                  <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
-              </div>
-              <div class="song-info">
-                  <div class="song-title">Allan Walker</div>
-              </div>
-          </div>
-          <div class="song-item">
-              <div class="song-image-wrapper">
-                  <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
-              </div>
-              <div class="song-info">
-                  <div class="song-title">Phan Mạnh Quỳnh</div>
-              </div>
-          </div>
-          <div class="song-item">
-              <div class="song-image-wrapper">
-                  <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
-              </div>
-              <div class="song-info">
-                  <div class="song-title">Sơn Tùng MTP</div>
-              </div>
-          </div>
-          <div class="song-item">
+    </div>
+
+    <div class="danhsach">
+        {% for artist in artists %}
+        <div class="song-item">
             <div class="song-image-wrapper">
-                <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
+                <img class="song-image" src="{{ artist.anh_dai_dien }}"/>
             </div>
             <div class="song-info">
-                <div class="song-title">Hồ Ngọc Hà</div>
+                <div class="song-artist">{{ artist.tencasi }}</div>
             </div>
         </div>
-        <div class="song-item">
-          <div class="song-image-wrapper">
-              <img class="song-image" src="{% static 'app/images/playlist-1.jpg' %}"/>
-          </div>
-          <div class="song-info">
-              <div class="song-title">Hồ Ngọc Hà</div>
-          </div>
-      </div>
-      </div>  
+            {% endfor %}
+        </div>  
     </div>
 
     <div class="top-header">

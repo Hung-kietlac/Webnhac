@@ -115,11 +115,17 @@ def save_to_mongo(backend, user, response, *args, **kwargs):
 def danhsachnhac(request):
     myclient = MongoClient("mongodb://localhost:27017/")
     mydb = myclient["Nhac"]
-    mycol = mydb["Nhac"]
+    songs_collection = mydb["Nhac"]
+    artists_collection = mydb["Artist"]
 
-    songs = list(mycol.find())
+    songs = list(songs_collection.find())
+    artists = list(artists_collection.find())[:5]  # Lấy 5 nghệ sĩ đầu tiên
 
-    return render(request, 'app/danhsachnhac.html', {'songs': songs})
+    # Chuyển ObjectId sang chuỗi cho mỗi nghệ sĩ
+    for artist in artists:
+        artist['_id'] = str(artist['_id'])
+
+    return render(request, 'app/danhsachnhac.html', {'songs': songs, 'artists': artists})
 
 def thuvien(request):
     client = MongoClient("mongodb://localhost:27017/")
@@ -159,3 +165,29 @@ def thuvien(request):
             return JsonResponse({'success': True})
 
     return render(request, 'app/thuvien.html', {'listening_history': listening_history})
+
+def danhsachcasi(request):
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["Nhac"]
+    artist_collection = db["Artist"]
+
+    artists = list(artist_collection.find())
+
+    # Chuyển ObjectId sang chuỗi
+    for artist in artists:
+        artist['_id'] = str(artist['_id'])
+
+    return render(request, 'app/danhsachcasi.html', {'artists': artists})
+
+def get_all_artists(request):
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["Nhac"]
+    artist_collection = db["Artist"]
+
+    artists = list(artist_collection.find())
+
+    # Chuyển ObjectId sang chuỗi
+    for artist in artists:
+        artist['_id'] = str(artist['_id'])
+
+    return JsonResponse({'artists': artists})
