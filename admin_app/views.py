@@ -4,6 +4,7 @@ from bson import ObjectId
 from django.http import JsonResponse
 from bson.errors import InvalidDocument
 import os
+import mutagen  # Thêm thư viện để đọc thông tin file nhạc
 
 def admin_home(request):
     myclient = MongoClient("mongodb://localhost:27017/")
@@ -91,10 +92,9 @@ def add_song(request):
             tencasi = request.POST.get("tencasi", "").strip()
             theloai = request.POST.get("theloai", "").strip()
             linkbaihat = request.FILES.get("linkbaihat")
-            thoiluong = request.POST.get("thoiluong", "").strip()
 
             # Kiểm tra dữ liệu hợp lệ
-            if not all([tenbaihat, tencasi, theloai, linkbaihat, thoiluong]):
+            if not all([tenbaihat, tencasi, theloai, linkbaihat]):
                 return JsonResponse({"error": "Vui lòng điền đầy đủ thông tin!"}, status=400)
 
             # Kiểm tra định dạng file nhạc
@@ -102,6 +102,11 @@ def add_song(request):
             file_extension = linkbaihat.name.split('.')[-1].lower()
             if file_extension not in allowed_extensions:
                 return JsonResponse({"error": "Định dạng file không được hỗ trợ! Chỉ chấp nhận mp3!"}, status=400)
+
+            # Tính toán thời gian bài hát
+            audio = mutagen.File(linkbaihat)  # Đọc file nhạc
+            thoigian = audio.info.length  # Lấy thời gian bài hát (tính bằng giây)
+            thoigian_str = str(int(thoigian // 60)) + ":" + str(int(thoigian % 60)).zfill(2)  # Chuyển đổi sang định dạng phút:giây
 
             # Xây dựng đường dẫn lưu file nhạc
             static_dir = os.path.join(os.getcwd(), 'static', 'app', 'FileNhac')
@@ -119,7 +124,7 @@ def add_song(request):
                 "tencasi": tencasi,
                 "theloai": theloai,
                 "linkbaihat": f"/static/app/FileNhac/{linkbaihat.name}",  # Đường dẫn tĩnh
-                "thoigian": thoiluong,
+                "thoigian": thoigian_str,  # Thêm thời gian vào document
             }
 
             # Thêm dữ liệu vào MongoDB
