@@ -42,16 +42,16 @@
             <div class="so-tt">{{ forloop.counter }}</div>
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
-                // Lấy tất cả các phần tử bài hát
-                const songElements = document.querySelectorAll('.list-mix-1');
-            
-                // Gắn sự kiện click cho từng bài
-                songElements.forEach(function (element) {
-                    element.addEventListener('click', function () {
-                        const songLink = this.getAttribute('data-link');
-                        playSong(songLink);
+                    // Lấy tất cả các phần tử bài hát
+                    const songElements = document.querySelectorAll('.list-mix-1');
+                
+                    // Gắn sự kiện click cho từng bài
+                    songElements.forEach(function (element) {
+                        element.addEventListener('click', function () {
+                            const songLink = this.getAttribute('data-link');
+                            playSong(songLink);
+                        });
                     });
-                });
                 });
             
                 function playSong(link) {

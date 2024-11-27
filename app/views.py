@@ -118,8 +118,22 @@ def danhsachnhac(request):
     songs_collection = mydb["Nhac"]
     artists_collection = mydb["Artist"]
 
+
     songs = list(songs_collection.find())
     artists = list(artists_collection.find())[:5]  # Lấy 5 nghệ sĩ đầu tiên
+
+    # Lấy từ khóa tìm kiếm từ GET request
+    query = request.GET.get('q')
+    if query:
+        songs = list(mycol.find({
+            "$or": [
+                {"tenbaihat": {"$regex": query, "$options": "i"}},
+                {"tencasi": {"$regex": query, "$options": "i"}}
+            ]
+        }))
+    else:
+        songs = list(mycol.find())
+
 
     # Chuyển ObjectId sang chuỗi cho mỗi nghệ sĩ
     for artist in artists:
@@ -166,6 +180,7 @@ def thuvien(request):
 
     return render(request, 'app/thuvien.html', {'listening_history': listening_history})
 
+
 def danhsachcasi(request):
     client = MongoClient("mongodb://localhost:27017/")
     db = client["Nhac"]
@@ -191,3 +206,4 @@ def get_all_artists(request):
         artist['_id'] = str(artist['_id'])
 
     return JsonResponse({'artists': artists})
+
