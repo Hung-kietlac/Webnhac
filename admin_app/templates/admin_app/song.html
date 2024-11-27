@@ -42,6 +42,37 @@
         </div>
     </div>
     
+    <div id="editSongModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditSongModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Sửa Bài Hát</h2>
+            <form id="editSongForm" method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="edit_tenbaihat">Tên bài hát:</label>
+                    <input type="text" id="edit_tenbaihat" name="tenbaihat" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit_tencasi">Nghệ sĩ:</label>
+                    <input type="text" id="edit_tencasi" name="tencasi" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit_theloai">Thể loại:</label>
+                    <input type="text" id="edit_theloai" name="theloai" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit_linkbaihat">File nhạc:</label>
+                    <input type="file" id="edit_linkbaihat" name="linkbaihat" accept=".mp3">
+                </div>
+                
+                <button type="submit">Cập nhật</button>
+            </form>
+        </div>
+    </div>
+    
     <script>
         function openAddSongModal() {
             document.getElementById("addSongModal").style.display = "block";
@@ -66,6 +97,18 @@
                 urlError.style.display = "block"; 
             }
         });
+
+        function openEditSongModal(songId, tenbaihat, tencasi, theloai) {
+            document.getElementById("editSongModal").style.display = "block";
+            document.getElementById("edit_tenbaihat").value = tenbaihat;
+            document.getElementById("edit_tencasi").value = tencasi;
+            document.getElementById("edit_theloai").value = theloai;
+            document.getElementById("editSongForm").action = "{% url 'admin_app:edit_song' 'songId' %}".replace('songId', songId);
+        }
+
+        function closeEditSongModal() {
+            document.getElementById("editSongModal").style.display = "none";
+        }
     </script>
 </div>
 <table>
@@ -90,10 +133,13 @@
             <td style="max-width: 100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{ song.linkbaihat }}</td>
             <td>{{ song.thoigian }}</td>
             <td>
-                <form method="POST" action="{% url 'admin_app:delete_song' song.id %}" style="display:inline;" onsubmit="return confirmDelete();">
-                    {% csrf_token %}
-                    <button type="submit" class="delete">Xóa</button>
-                </form>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <button class="edit" style="margin-right: 10px;" onclick="openEditSongModal('{{ song.id }}', '{{ song.tenbaihat }}', '{{ song.tencasi }}', '{{ song.theloai }}')">Sửa</button>
+                    <form method="POST" action="{% url 'admin_app:delete_song' song.id %}" onsubmit="return confirmDelete();">
+                        {% csrf_token %}
+                        <button type="submit" class="delete">Xóa</button>
+                    </form>
+                </div>
             </td>
         </tr>
         {% endfor %}

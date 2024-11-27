@@ -4,7 +4,7 @@ from bson import ObjectId
 from django.http import JsonResponse
 from bson.errors import InvalidDocument
 import os
-import mutagen  # Thêm thư viện để đọc thông tin file nhạc
+import mutagen
 
 def admin_home(request):
     myclient = MongoClient("mongodb://localhost:27017/")
@@ -103,11 +103,6 @@ def add_song(request):
             if file_extension not in allowed_extensions:
                 return JsonResponse({"error": "Định dạng file không được hỗ trợ! Chỉ chấp nhận mp3!"}, status=400)
 
-            # Tính toán thời gian bài hát
-            audio = mutagen.File(linkbaihat)  # Đọc file nhạc
-            thoigian = audio.info.length  # Lấy thời gian bài hát (tính bằng giây)
-            thoigian_str = str(int(thoigian // 60)) + ":" + str(int(thoigian % 60)).zfill(2)  # Chuyển đổi sang định dạng phút:giây
-
             # Xây dựng đường dẫn lưu file nhạc
             static_dir = os.path.join(os.getcwd(), 'static', 'app', 'FileNhac')
             os.makedirs(static_dir, exist_ok=True)  # Tạo thư mục nếu chưa tồn tại
@@ -124,7 +119,6 @@ def add_song(request):
                 "tencasi": tencasi,
                 "theloai": theloai,
                 "linkbaihat": f"/static/app/FileNhac/{linkbaihat.name}",  # Đường dẫn tĩnh
-                "thoigian": thoigian_str,  # Thêm thời gian vào document
             }
 
             # Thêm dữ liệu vào MongoDB
@@ -262,3 +256,43 @@ def playlist(request):
 
 def category(request):
     return render(request, 'admin_app/category.html')
+
+def edit_song(request, song_id):
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["Nhac"]
+    songs_collection = db["Nhac"]
+
+    if request.method == "POST":
+        try:
+            # Lấy dữ liệu từ form
+            tenbaihat = request.POST.get("tenbaihat", "").strip()
+            tencasi = request.POST.get("tencasi", "").strip()
+            theloai = request.POST.get("theloai", "").strip()
+            linkbaihat = request.FILES.get("linkbaihat")
+
+            # Cập nhật thông tin bài hát
+            update_data = {
+                "tenbaihat": tenbaihat,
+                "tencasi": tencasi,
+                "theloai": theloai,
+            }
+
+            if linkbaihat:
+                # Tính toán thời gian bài hát
+                audio = mutagen.File(linkbaihat)
+                thoigian = audio.info.length
+                thoigian_str = str(int(thoigian // 60)) + ":" + str(int(thoigian % 60)).zfill(2)
+                update_data["linkbaihat"] = f"/static/app/FileNhac/{linkbaihat.name}"
+                update_data["thoigian"] = thoigian_str
+
+            # Cập nhật dữ liệu vào MongoDB
+            songs_collection.update_one({'_id': ObjectId(song_id)}, {"$set": update_data})
+
+            return redirect('/admin_app/song')
+
+        except Exception as e:
+            return JsonResponse({"error": f"Lỗi không xác định: {str(e)}"}, status=500)
+
+    # Nếu là phương thức GET, lấy thông tin bài hát để hiển thị
+    song = songs_collection.find_one({'_id': ObjectId(song_id)})
+    return render(request, 'admin_app/edit_song.html', {'song': song})
