@@ -1,45 +1,30 @@
-{% extends "admin_app/navbar.html" %}
-
-{% load static %} 
-
-{% block main_content %}
-<link rel="stylesheet" href="{% static 'admin_app/css/home.css' %}">
+{% extends "admin_app/navbar.html" %} {% load static %} {% block main_content %}
+<link rel="stylesheet" href="{% static 'admin_app/css/home.css' %}" />
 
 <div class="grid-container">
   <a href="{% url 'admin_app:user' %}" class="card bg-blue">
-    <h3 class="card-title">Tổng số người dùng </h3>
-    <p class="card-value text-blue">
-      {{ total_users }}  <!-- Hiển thị tổng số người dùng -->
-    </p>
+    <h3 class="card-title">Tổng số người dùng</h3>
+    <p class="card-value text-blue">{{ total_users }}</p>
   </a>
-  
+
   <a href="{% url 'admin_app:song' %}" class="card bg-green">
-    <h3 class="card-title">Tổng số bài hát </h3>
-    <p class="card-value text-green">
-      {{ total_songs }}  <!-- Hiển thị tổng số bài hát -->
-    </p>
+    <h3 class="card-title">Tổng số bài hát</h3>
+    <p class="card-value text-green">{{ total_songs }}</p>
   </a>
-  
-  
+
   <a href="{% url 'admin_app:artist' %}" class="card bg-orange">
-    <h3 class="card-title">Tổng số ca sĩ </h3>
-    <p class="card-value text-green">
-      {{ total_artists }}  <!-- Hiển thị tổng số ca sĩ -->
-    </p>
+    <h3 class="card-title">Tổng số ca sĩ</h3>
+    <p class="card-value text-green">{{ total_artists }}</p>
   </a>
 
   <a href="{% url 'admin_app:playlist' %}" class="card bg-pink">
-    <h3 class="card-title">Tổng số playlist </h3>
-    <p class="card-value text-green">
-      10
-    </p>
+    <h3 class="card-title">Tổng số playlist</h3>
+    <p class="card-value text-green">10</p>
   </a>
 
   <a href="{% url 'admin_app:category' %}" class="card bg-magenta">
-      <h3 class="card-title">Thể loại </h3>
-      <p class="card-value text-green">
-        10
-      </p>
+    <h3 class="card-title">Thể loại</h3>
+    <p class="card-value text-green">10</p>
   </a>
 </div>
 

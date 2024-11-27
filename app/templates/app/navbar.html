@@ -7,6 +7,7 @@
     <title>Trang Chủ - Web Nghe Nhạc</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'app/images/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'app/css/navbar.css' %}">
     <style>
         .sticky-part a {
@@ -61,75 +62,374 @@
         </div>
     </div>
 
-    <div class="music-pay-system">
-        <div class="controls">
-            <img class="vector" src="{% static 'app/images/lap.svg' %}" />
-            <img class="suffle-1" src="{% static 'app/images/mix.svg' %}" />
-            <img class="next-1" src="{% static 'app/images/next-1.svg' %}" />
-            <img class="stop" src="{% static 'app/images/stop.svg' %}" onclick="togglePlayPause()" />
-            <img class="next-2" src="{% static 'app/images/next-2.svg' %}" />
-            <img class="like" src="{% static 'app/images/like.svg' %}" />
-            <img class="speaker-1" src="{% static 'app/images/volume.png' %}" />
-        </div>
-        <div class="time-info">
-            <div class="_0-51" id="current-time">0:00</div>
-            <div class="progress-bar">
-                <audio id="audio-player" ontimeupdate="updateProgressBar()">
-                    <source id="audio-source" src="{{ song.linkbaihat }}" type="audio/mp3">
-                </audio>
+    <div class="music-pay-system" style="height: 120px">
+        <div class="left-section">
+            <div class="now-playing-info">
+                <div class="song-title"></div>
+                <div class="song-artist"></div>
             </div>
-            <div class="_1-41" id="duration">0:00</div>
+        </div>
+        <div class="center-section">
+            <div class="controls">
+                <img class="vector" src="{% static 'app/images/lap.svg' %}" />
+                <img class="suffle-1" src="{% static 'app/images/mix.svg' %}" />
+                <img class="next-1" src="{% static 'app/images/next-1.svg' %}" onclick="playPreviousSong()"  />
+             
+                <img class="stop" id="play-pause-btn" src="{% static 'app/images/play.svg' %}" onclick="togglePlayPause()" />
+              
+                <img class="next-2" src="{% static 'app/images/next-2.svg' %}" onclick="playNextSong()" />
+                <img class="like" src="{% static 'app/images/like.svg' %}" />
+                <img class="speaker-1" src="{% static 'app/images/volume.png' %}" />
+            </div>
+            <div class="time-info" style="width: 100%;" >
+                <div class="_0-51" id="current-time">0:00</div>
+                <div class="progress-bar" id="progress-bar">
+                    <div class="progress" id="progress"></div>
+                    <audio id="audio-player" ontimeupdate="updateProgressBar()">
+                        <source id="audio-source" src="{{ song.linkbaihat }}" type="audio/mp3">
+                    </audio>
+                </div>
+                <div class="_1-41" id="duration">0:00</div>
+            </div>
         </div>
         <script>
-            // Cập nhật khi thời gian thay đổi
+            
+            let isLoading = false;
+            let isPlaying = false;
+            let currentSongIndex = -1;
+            let songsList = [];
+            let audioPlayer = null;  
+            let isDragging = false;
+
+
+            function updatePlayPauseIcon(playing) {
+                const playPauseBtn = document.getElementById('play-pause-btn');
+                if (playPauseBtn) {
+                    playPauseBtn.src = playing ? 
+                        "{% static 'app/images/pause.svg' %}" : 
+                        "{% static 'app/images/play.svg' %}";
+                    console.log('Updated icon to:', playing ? 'pause' : 'play');
+                }
+             }
+
+            async function togglePlayPause() {
+                const audioPlayer = document.getElementById('audio-player');
+                if (!audioPlayer) return;
+
+                try {
+                    if (audioPlayer.paused) {
+                        await audioPlayer.play();
+                        isPlaying = true;
+                        updatePlayPauseIcon(true);
+                    } else {
+                        await audioPlayer.pause();
+                        isPlaying = false;
+                        updatePlayPauseIcon(false);
+                    }
+                } catch (error) {
+                    console.error('Toggle error:', error);
+                }
+            }
+        
+            async function playSong(link) {
+                if (!link || isLoading) {
+                    console.log('Link không hợp lệ hoặc đang loading');
+                    return;
+                }
+        
+
+                try {
+                    isLoading = true;
+                    console.log('Bắt đầu tải bài hát mới');
+                    const audioPlayer = document.getElementById('audio-player');
+                    const audioSource = document.getElementById('audio-source');
+                    if (!audioPlayer || !audioSource) {
+                    console.log('Không tìm thấy audio player hoặc source');
+                    return;
+                }
+        
+         currentSongIndex = songsList.findIndex(song => song.link === link);
+         if (currentSongIndex !== -1) {
+                updateNowPlayingInfo(songsList[currentSongIndex].element);
+            }
+            console.log('Đang phát bài hát số:', currentSongIndex);
+                    if (!audioPlayer.paused) {
+                        audioPlayer.pause();
+                        console.log('Đã dừng bài hát hiện tại');
+                    }
+
+                  
+                    audioSource.src = link;
+                    audioPlayer.load();
+                    console.log('Đã load source mới');
+            
+                   
+                    await audioPlayer.play();
+                    isPlaying = true;  
+                    updatePlayPauseIcon(true);
+                    console.log('Bắt đầu phát nhạc thành công');
+                     } catch (error) {
+                    console.error('Lỗi phát nhạc:', error);
+                    isPlaying = false;  
+                    updatePlayPauseIcon(false);
+                } finally {
+                    isLoading = false;
+                }
+            }
+        
+            async function togglePlayPause() {
+                if (isLoading) {
+            console.log('Đang loading, không thể toggle');
+            return;
+        }
+        
+                const audioPlayer = document.getElementById('audio-player');
+                if (!audioPlayer) {
+            console.log('Không tìm thấy audio player');
+            return;
+        }
+                try {
+            if (audioPlayer.paused) {
+                await audioPlayer.play();
+                isPlaying = true;  
+                updatePlayPauseIcon(true);
+                console.log('Phát nhạc');
+            } else {
+                audioPlayer.pause();
+                isPlaying = false;  
+                updatePlayPauseIcon(false);
+                console.log('Tạm dừng nhạc');
+            }
+        } catch (error) {
+            console.error('Lỗi khi toggle play/pause:', error);
+            isPlaying = false;  
+            updatePlayPauseIcon(false);
+        }
+    }
+        
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const audioPlayer = document.getElementById('audio-player');
+                const songElements = document.querySelectorAll('.list-mix-1');
+                const progressBar = document.getElementById('progress-bar');
+                songElements.forEach(element => {
+                    element.addEventListener('click', async function() {
+                        if (isLoading) return;
+                        
+                        const songLink = this.getAttribute('data-link');
+                        await playSong(songLink);
+                    });
+                });
+                            songsList = Array.from(songElements).map(element => ({
+                        link: element.getAttribute('data-link'),
+                        element: element
+                    }));
+                    console.log('Tổng số bài hát:', songsList.length);
+                    if (audioPlayer) {
+                        audioPlayer.addEventListener('ended', () => {
+                            console.log('Bài hát kết thúc, chuyển bài tiếp theo');
+                            playNextSong();
+                        });
+                    }
+                
+    
+            if (progressBar && audioPlayer) {
+          
+            progressBar.addEventListener('click', handleProgressBarClick);
+            
+        
+            progressBar.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                handleProgressBarClick(e);
+            });
+            
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    handleProgressBarClick(e);
+                }
+            });
+            
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+            
+      
+            progressBar.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                handleProgressBarClick(e.touches[0]);
+            });
+            
+            progressBar.addEventListener('touchmove', (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    handleProgressBarClick(e.touches[0]);
+                }
+            });
+            
+            progressBar.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+
+    
+            audioPlayer.addEventListener('timeupdate', updateProgressBar);
+        }
+            });
+
+
+
+     async function playNextSong() {
+        if (songsList.length === 0) return;
+        
+        currentSongIndex++;
+        if (currentSongIndex >= songsList.length) {
+            currentSongIndex = 0; 
+        }
+        
+        const nextSong = songsList[currentSongIndex];
+        if (nextSong && nextSong.link) {
+            console.log('Chuyển đến bài tiếp theo:', currentSongIndex);
+            await playSong(nextSong.link);
+            updateNowPlayingInfo(nextSong.element);
+        }
+    }
+
+
+    async function playPreviousSong() {
+        if (songsList.length === 0) return;
+        
+        currentSongIndex--;
+        if (currentSongIndex < 0) {
+            currentSongIndex = songsList.length - 1; 
+        }
+        
+        const previousSong = songsList[currentSongIndex];
+        if (previousSong && previousSong.link) {
+            console.log('Chuyển về bài trước:', currentSongIndex);
+            await playSong(previousSong.link);
+            updateNowPlayingInfo(previousSong.element);
+        }
+    }
+
+
+        
+         
+        if (audioPlayer) {
+            audioPlayer.addEventListener('play', () => {
+                isPlaying = true;
+                updatePlayPauseIcon(true);
+            });
+
+            audioPlayer.addEventListener('pause', () => {
+                isPlaying = false;
+                updatePlayPauseIcon(false);
+            });
+
+            audioPlayer.addEventListener('ended', () => {
+                isPlaying = false;
+                updatePlayPauseIcon(false);
+            });
+
+            audioPlayer.addEventListener('error', () => {
+                isPlaying = false;
+                updatePlayPauseIcon(false);
+                isLoading = false;
+            });
+        }
+
+        
+            
+                const playPauseBtn = document.getElementById('play-pause-btn');
+                if (playPauseBtn) {
+                    playPauseBtn.onclick = togglePlayPause;
+                }
+           
             function updateProgressBar() {
                 const audioPlayer = document.getElementById('audio-player');
                 const currentTimeDisplay = document.getElementById('current-time');
                 const durationDisplay = document.getElementById('duration');
+                const progressBar = document.getElementById('progress');
+        
+                if (!audioPlayer || !currentTimeDisplay || !durationDisplay || !progressBar) return;
         
                 const currentTime = audioPlayer.currentTime;
                 const duration = audioPlayer.duration;
         
-                // Kiểm tra nếu thời gian hợp lệ
                 if (!isNaN(duration)) {
+                    const progressPercent = (currentTime / duration) * 100;
+                    progressBar.style.width = progressPercent + '%';
                     currentTimeDisplay.textContent = formatTime(currentTime);
                     durationDisplay.textContent = formatTime(duration);
                 }
             }
         
-            // Chuyển đổi thời gian từ giây thành phút:giây
             function formatTime(seconds) {
                 const mins = Math.floor(seconds / 60);
                 const secs = Math.floor(seconds % 60);
                 return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
             }
-        
-            // Hàm phát nhạc
-            function playSong(link) {
-                const audioPlayer = document.getElementById('audio-player');
-                const audioSource = document.getElementById('audio-source');
-        
-                if (!link) {
-                    console.error('Link bài hát không tồn tại!');
-                    return;
-                }
-        
-                // Cập nhật nguồn nhạc
-                audioSource.src = link;
-                audioPlayer.load();  // Nạp lại nguồn nhạc
-                audioPlayer.play();  // Phát nhạc
+            function updateNowPlayingInfo(songElement) {
+                    const titleElement = document.querySelector('.song-title');
+                    const artistElement = document.querySelector('.song-artist');
+                    
+                    if (titleElement && artistElement && songElement) {
+                        const title = songElement.querySelector('.ten-bh').textContent;
+                        const artist = songElement.querySelector('.nghe-si').textContent;
+                        
+                        titleElement.textContent = title;
+                        artistElement.textContent = artist;
+                        console.log('Đang phát:', title, 'bởi', artist);
+                    }
             }
-        
-            // Hàm dừng và phát nhạc
-            function togglePlayPause() {
+          
+            function handleProgressBarClick(e) {
+                const progressBar = document.getElementById('progress-bar');
                 const audioPlayer = document.getElementById('audio-player');
                 
-                if (audioPlayer.paused) {
-                    audioPlayer.play();  // Phát nhạc
-                } else {
-                    audioPlayer.pause();  // Dừng nhạc
-                }
+                if (!progressBar || !audioPlayer) return;
+                
+                const rect = progressBar.getBoundingClientRect();
+                const clickPosition = e.clientX - rect.left;
+                const progressBarWidth = rect.width;
+                const clickPercentage = (clickPosition / progressBarWidth);
+                const newTime = clickPercentage * audioPlayer.duration;
+                
+                audioPlayer.currentTime = newTime;
+                updateProgressBar();
             }
+
+          
+            function handleProgressBarDrag(e) {
+                if (!isDragging) return;
+                handleProgressBarClick(e);
+            }
+          
+        function updateProgressBar() {
+        const audioPlayer = document.getElementById('audio-player');
+        const progressBar = document.getElementById('progress');
+        const currentTimeDisplay = document.getElementById('current-time');
+        const durationDisplay = document.getElementById('duration');
+        
+        if (!audioPlayer || !progressBar || !currentTimeDisplay || !durationDisplay) return;
+        
+        const currentTime = audioPlayer.currentTime;
+        const duration = audioPlayer.duration;
+        
+        if (!isNaN(duration)) {
+            const progressPercent = (currentTime / duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            currentTimeDisplay.textContent = formatTime(currentTime);
+            durationDisplay.textContent = formatTime(duration);
+        }
+    }
+
+   
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+
         </script>
     </div>
 </body>
