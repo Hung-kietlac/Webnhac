@@ -117,7 +117,17 @@ def danhsachnhac(request):
     mydb = myclient["Nhac"]
     mycol = mydb["Nhac"]
 
-    songs = list(mycol.find())
+    # Lấy từ khóa tìm kiếm từ GET request
+    query = request.GET.get('q')
+    if query:
+        songs = list(mycol.find({
+            "$or": [
+                {"tenbaihat": {"$regex": query, "$options": "i"}},
+                {"tencasi": {"$regex": query, "$options": "i"}}
+            ]
+        }))
+    else:
+        songs = list(mycol.find())
 
     return render(request, 'app/danhsachnhac.html', {'songs': songs})
 
