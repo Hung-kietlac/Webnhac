@@ -118,8 +118,9 @@ def danhsachnhac(request):
     songs_collection = mydb["Nhac"]
     artists_collection = mydb["Artist"]
 
-
-    songs = list(songs_collection.find())
+    # Đảm bảo rằng mycol được định nghĩa
+    mycol = songs_collection  # Thay 'tên_bảng' bằng tên bảng bạn muốn truy cập
+    songs = list(mycol.find())
     artists = list(artists_collection.find())[:5]  # Lấy 5 nghệ sĩ đầu tiên
 
     # Lấy từ khóa tìm kiếm từ GET request
@@ -133,7 +134,6 @@ def danhsachnhac(request):
         }))
     else:
         songs = list(mycol.find())
-
 
     # Chuyển ObjectId sang chuỗi cho mỗi nghệ sĩ
     for artist in artists:
