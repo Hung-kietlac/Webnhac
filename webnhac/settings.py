@@ -27,8 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1042680925036-r2cm5fdqj5hhqiumnir44fqmg062ibor.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '331056448971-rtjpav4ke8q5opoq70ll5mconkrrjoec.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'http://127.0.0.1:8000/social-auth/complete/google-oauth2/'
 
