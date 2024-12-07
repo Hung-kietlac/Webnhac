@@ -301,4 +301,5 @@ def edit_song(request, song_id):
 
     # Nếu là phương thức GET, lấy thông tin bài hát để hiển thị
     song = songs_collection.find_one({'_id': ObjectId(song_id)})
+    
     return render(request, 'admin_app/edit_song.html', {'song': song})
