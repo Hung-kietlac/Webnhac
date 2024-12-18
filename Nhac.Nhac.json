@@ -1,0 +1,670 @@
+[{
+  "_id": {
+    "$oid": "6722482147598125766c9ddd"
+  },
+  "tenbaihat": "Người hãy quên em đi",
+  "tencasi": "Mỹ Tâm",
+  "linkbaihat": "/static/app/Filenhac/Mỹ_Tâm_-_Người_Hãy_Quên_Em_Đi.mp3",
+  "theloai": "Pop",
+  "thoigian": "3:44"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9dde"
+  },
+  "tenbaihat": "Đừng làm trái tim anh đau",
+  "tencasi": "Sơn Tùng MTP",
+  "linkbaihat": "/static/app/Filenhac/Đừng_làm_trái_tim_anh_đau.mp3",
+  "theloai": "Rap",
+  "thoigian": "4:16"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9ddf"
+  },
+  "tenbaihat": "Đoạn tuyệt nàng đi",
+  "tencasi": "Phát Huy T4",
+  "linkbaihat": "/static/app/Filenhac/ĐOẠN TUYỆT NÀNG ĐI  THƯƠNG NGƯỜI KHÔNG THƯƠNG 2   PHÁT HUY T4 ft  prod Hoàng Green  (1).mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:41"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9de0"
+  },
+  "tenbaihat": "Những kẻ mộng mơ",
+  "tencasi": "Noo Phước Thịnh",
+  "linkbaihat": "/static/app/Filenhac/Nhung_Ke_Mong_Mo-_Noo_Phuoc_Thinh.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:39"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9de1"
+  },
+  "tenbaihat": "24H",
+  "tencasi": "LyLy",
+  "linkbaihat": "/static/app/Filenhac/24H  LyLy ft Magazine.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:17"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9de2"
+  },
+  "tenbaihat": "Ai rồi cũng sẽ khác",
+  "tencasi": "Hà Nhi",
+  "linkbaihat": "/static/app/Filenhac/AI RỒI CŨNG SẼ KHÁC  HÀ NHI  LIVE VERSION AT GIAO LỘ THỜI GIAN.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:50"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9de3"
+  },
+  "tenbaihat": "Em bé",
+  "tencasi": "Karik ft AMEE",
+  "linkbaihat": "/static/app/Filenhac/AMEE  KARIK  EM BÉ Lyrics.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:11"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9de4"
+  },
+  "tenbaihat": "Anh là ngoại lệ của em",
+  "tencasi": "Phương Ly",
+  "linkbaihat": "/static/app/Filenhac/Anh Là Ngoại Lệ Của Em Phương Ly.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:22"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9de5"
+  },
+  "tenbaihat": "Buồn của anh",
+  "tencasi": "KICM ft Đạt G ft Masew",
+  "linkbaihat": "/static/app/Filenhac/Buồn Của Anh  KICM x Đạt G x Masew.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:39"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9de6"
+  },
+  "tenbaihat": "Gửi anh xa nhớ",
+  "tencasi": "Bích Phương",
+  "linkbaihat": "/static/app/Filenhac/BÍCH PHƯƠNG  Gửi Anh Xa Nhớ Official Lyric Video.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:23"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9de7"
+  },
+  "tenbaihat": "Đoản Xuân ca",
+  "tencasi": "Bích Phương",
+  "linkbaihat": "/static/app/Filenhac/BÍCH PHƯƠNG  Đoản Xuân Ca Official AudioNhạc Xuân 2024.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:26"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9de8"
+  },
+  "tenbaihat": "Bật tình yêu lên",
+  "tencasi": "Hòa Minzy ft Tăng Duy Tân",
+  "linkbaihat": "/static/app/Filenhac/Bật Tình Yêu Lên  Hòa Minzy x Tăng Duy Tân  MV Lyrics.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:39"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9de9"
+  },
+  "tenbaihat": "Bụi bay vào mắt",
+  "tencasi": "Phạm Quỳnh Anh",
+  "linkbaihat": "/static/app/Filenhac/Bụi Bay Vào Mắt  Lyrics Video  Phạm Quỳnh Anh.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:49"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9dea"
+  },
+  "tenbaihat": "Chưa quên người yêu cũ",
+  "tencasi": "Hà Nhi",
+  "linkbaihat": "/static/app/Filenhac/Chưa Quên Người Yêu Cũ  Hà Nhi  Lyrics Video Mưa.mp3",
+  "theloai": "Unknown",
+  "thoigian": "5:02"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9deb"
+  },
+  "tenbaihat": "Chắc vì mình chưa tốt",
+  "tencasi": "Thanh Hưng",
+  "linkbaihat": "/static/app/Filenhac/Chắc Vì Mình Chưa Tốt  Thanh Hưng Lyrics Video.mp3",
+  "theloai": "Unknown",
+  "thoigian": "5:54"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9dec"
+  },
+  "tenbaihat": "Chỉ còn lại tình yêu",
+  "tencasi": "Bùi Anh Tuấn",
+  "linkbaihat": "/static/app/Filenhac/Chỉ Còn Lại Tình Yêu.mp3",
+  "theloai": "Unknown",
+  "thoigian": "5:16"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9ded"
+  },
+  "tenbaihat": "My Universe",
+  "tencasi": "Coldplay ft BTS",
+  "linkbaihat": "/static/app/Filenhac/Coldplay X BTS  My Universe.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:48"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9dee"
+  },
+  "tenbaihat": "Con trai cưng",
+  "tencasi": "B RAY ft Khánh",
+  "linkbaihat": "/static/app/Filenhac/CON TRAI CƯNG Piano Version  B RAY x KHÁNH  Official Lyrics Video.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:10"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9def"
+  },
+  "tenbaihat": "Cuộc gọi lúc nữa đêm",
+  "tencasi": "AMEE",
+  "linkbaihat": "/static/app/Filenhac/Cuộc gọi lúc nửa đêm  AMEE.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:02"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9df0"
+  },
+  "tenbaihat": "Câu hứa chưa vẹn tròn",
+  "tencasi": "Phát Huy T4 ft Hoàng Green",
+  "linkbaihat": "/static/app/Filenhac/CÂU HỨA CHƯA VẸN TRÒN  PHÁT HUY T4 x HOÀNG GREEN  OFFICIAL MUSIC VIDEO.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:28"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9df1"
+  },
+  "tenbaihat": "Có không giữ mất đừng tìm",
+  "tencasi": "Trúc Nhân",
+  "linkbaihat": "/static/app/Filenhac/CÓ KHÔNG GIỮ MẤT ĐỪNG TÌM Lyric Video  TRÚC NHÂN.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:43"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9df2"
+  },
+  "tenbaihat": "Có người",
+  "tencasi": "Vũ Cát Tường",
+  "linkbaihat": "/static/app/Filenhac/CÓ NGƯỜI   VŨ CÁT TƯỜNG  LYRICS VIDEO.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:56"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9df3"
+  },
+  "tenbaihat": "Có như không có",
+  "tencasi": "Hiền Hồ",
+  "linkbaihat": "/static/app/Filenhac/Có Như Không Có  Hiền Hồ  Official Lyrics Video.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:33"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9df4"
+  },
+  "tenbaihat": "Cạn tình như thế",
+  "tencasi": "DICKSON ft Thành Đạt ft Lê Chí Trung",
+  "linkbaihat": "/static/app/Filenhac/Cạn Tình Như Thế  Dickson x Thành Đạt  Lê Chí Trung.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:55"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9df5"
+  },
+  "tenbaihat": "Em gái mưa",
+  "tencasi": "Hương Tràm",
+  "linkbaihat": "/static/app/Filenhac/Em Gái Mưa  Lyric   Hương Tràm  ZymMii.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:57"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9df6"
+  },
+  "tenbaihat": "Có hẹn với thanh xuân",
+  "tencasi": "GREY D ft ORANGE ft SUNI Hạ Linh ft TLINH",
+  "linkbaihat": "/static/app/Filenhac/có hẹn với thanh xuân  GREY D HOÀNG DŨNG ORANGE SUNI HẠ LINH  TLINH.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:44"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9df7"
+  },
+  "tenbaihat": "Em là kẻ đáng thương",
+  "tencasi": "Phát Huy T4",
+  "linkbaihat": "/static/app/Filenhac/EM LÀ KẺ ĐÁNG THƯƠNG  PHÁT HUY T4  OFFICIAL MV (1).mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:21"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9df8"
+  },
+  "tenbaihat": "Em một mình quen rồi",
+  "tencasi": "Dương Hoàng Yến",
+  "linkbaihat": "/static/app/Filenhac/EM MỘT MÌNH QUEN RỒI LYRICS VIDEO  DƯƠNG HOÀNG YẾN.mp3",
+  "theloai": "Unknown",
+  "thoigian": "6:02"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9df9"
+  },
+  "tenbaihat": "Em ơi",
+  "tencasi": "Vũ Cát Tường ft Hakoota Dũng Hà",
+  "linkbaihat": "/static/app/Filenhac/Em Ơi  Vũ Cát Tường ft Hakoota Dũng Hà.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:12"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9dfa"
+  },
+  "tenbaihat": "Giá như cô ấy chưa xuất hiện",
+  "tencasi": "Miu Lê",
+  "linkbaihat": "/static/app/Filenhac/Giá Như Cô Ấy Chưa Xuất Hiện  MIU LÊ  COVER LYRICS.mp3",
+  "theloai": "Unknown",
+  "thoigian": "5:16"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9dfb"
+  },
+  "tenbaihat": "Ngủ một mình, Tình rất tình",
+  "tencasi": "HIEUTHUHAI ft NEGAV",
+  "linkbaihat": "/static/app/Filenhac/hieuthuhai  ngủ một mình tình rất tình ft negav prod by kewtiie.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:25"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9dfc"
+  },
+  "tenbaihat": "Em ngày xưa khác rồi",
+  "tencasi": "Hiền Hồ",
+  "linkbaihat": "/static/app/Filenhac/Hiền Hồ  Em Ngày Xưa Khác Rồi  Official Video Lyric.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:50"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9dfd"
+  },
+  "tenbaihat": "Bo Xì Bo",
+  "tencasi": "Hoàng Thùy Linh",
+  "linkbaihat": "/static/app/Filenhac/Hoàng Thuỳ Linh  BO XÌ BO PAUSE PAUSE  Official Music Video.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:36"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9dfe"
+  },
+  "tenbaihat": "Em đây chẳng phải Thúy Kiều",
+  "tencasi": "Hoàng Thùy Linh",
+  "linkbaihat": "/static/app/Filenhac/Hoàng Thùy Linh  Em Đây Chẳng Phải Thúy Kiều I Am Not Thuy Kieu  Official Lyrics Video.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:32"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9dff"
+  },
+  "tenbaihat": "Cho em gần anh thêm chút nữa",
+  "tencasi": "Hương Tràm",
+  "linkbaihat": "/static/app/Filenhac/Hương Tràm Singer   Cho Em Gần Anh Thêm Chút Nữa   Lyric.mp3",
+  "theloai": "Unknown",
+  "thoigian": "5:14"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e00"
+  },
+  "tenbaihat": "Không sao mà em đây rồi",
+  "tencasi": "Suni Hạ Linh ft Lou Hoàng",
+  "linkbaihat": "/static/app/Filenhac/Không Sao Mà Em Đây Rồi  Suni Hạ Linh ft Lou Hoàng  Lyrics Video.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:24"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e01"
+  },
+  "tenbaihat": "Không thể cùng nhau suốt kiếp",
+  "tencasi": "Hòa Minzy ft Mr Siro",
+  "linkbaihat": "/static/app/Filenhac/Không Thể Cùng Nhau Suốt kiếp Lyrics  Hoà MinzyftMrSiro.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:50"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e02"
+  },
+  "tenbaihat": "Kiss me",
+  "tencasi": "Thủy Tiên",
+  "linkbaihat": "/static/app/Filenhac/Kiss Me  Thủy Tiên Video Lyrics.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:26"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e03"
+  },
+  "tenbaihat": "Kén cá chọn canh",
+  "tencasi": "Hòa Minzy ft Tuấn Cry ft Masew",
+  "linkbaihat": "/static/app/Filenhac/Kén Cá Chọn Canh  Hòa Minzy x Tuấn Cry x Masew.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:34"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e04"
+  },
+  "tenbaihat": "Kẻ cắp gặp bà già",
+  "tencasi": "Hoàng Thùy Linh ft BinZ",
+  "linkbaihat": "/static/app/Filenhac/Kẻ Cắp Gặp Bà Già  Hoàng Thùy Linh ft Binz Lyrics.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:36"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e05"
+  },
+  "tenbaihat": "Lao tâm khổ tứ",
+  "tencasi": "Thanh Hưng",
+  "linkbaihat": "/static/app/Filenhac/Lao Tâm Khổ Tứ  Thanh Hưng Official MV.mp3",
+  "theloai": "Unknown",
+  "thoigian": "5:47"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e06"
+  },
+  "tenbaihat": "MONEY",
+  "tencasi": "LISA",
+  "linkbaihat": "/static/app/Filenhac/LISA MONEY.mp3",
+  "theloai": "Unknown",
+  "thoigian": "2:46"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e07"
+  },
+  "tenbaihat": "Ngày đẹp trời để nói chia tay",
+  "tencasi": "Lou Hoàng",
+  "linkbaihat": "/static/app/Filenhac/Lou Hoàng  Ngày Đẹp Trời Để Nói Chia Tay Lyric Video.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:40"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e08"
+  },
+  "tenbaihat": "Lâu lâu nhắc lại",
+  "tencasi": "Hà Nhi ft Khói",
+  "linkbaihat": "/static/app/Filenhac/LÂU LÂU NHẮC LẠI  Hà Nhi ft Khói.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:32"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e09"
+  },
+  "tenbaihat": "Lớn rồi còn khóc nhè",
+  "tencasi": "Trúc Nhân",
+  "linkbaihat": "/static/app/Filenhac/LỚN RỒI CÒN KHÓC NHÈ     TRÚC NHÂN LRCKN.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:37"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e0a"
+  },
+  "tenbaihat": "Đi về nhà",
+  "tencasi": "Đen ft JustaTee",
+  "linkbaihat": "/static/app/Filenhac/Đen x JustaTee  Đi Về Nhà MV.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:25"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e0b"
+  },
+  "tenbaihat": "Trên tình bạn dưới tình yêu",
+  "tencasi": "MIN",
+  "linkbaihat": "/static/app/Filenhac/MIN  TRÊN TÌNH BẠN DƯỚI TÌNH YÊU  OFFICIAL MUSIC VIDEO.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:53"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e0c"
+  },
+  "tenbaihat": "Mình yêu nhau đi",
+  "tencasi": "Bích Phương",
+  "linkbaihat": "/static/app/Filenhac/Minh yêu nhau đi  Bich Phương Offical Lyrics Video by 2Kmusic HD.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:39"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e0d"
+  },
+  "tenbaihat": "Mơ hồ",
+  "tencasi": "Bùi Anh Tuấn",
+  "linkbaihat": "/static/app/Filenhac/Mơ Hồ  Bùi Anh Tuấn.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:16"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e0e"
+  },
+  "tenbaihat": "Mặt trời của em",
+  "tencasi": "Phương Ly ft JustaTee",
+  "linkbaihat": "/static/app/Filenhac/Mặt trời của em Phương Ly ft JustaTee.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:11"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e0f"
+  },
+  "tenbaihat": "Mơ",
+  "tencasi": "Vũ Cát Tường",
+  "linkbaihat": "/static/app/Filenhac/Mơ     Vũ Cát Tường.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:30"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e10"
+  },
+  "tenbaihat": "Một năm mới bình an",
+  "tencasi": "Sơn Tùng MTP",
+  "linkbaihat": "/static/app/Filenhac/MỘT NĂM MỚI BÌNH AN  SƠN TÙNG MTP.mp3",
+  "theloai": "Rap",
+  "thoigian": "4:12"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e11"
+  },
+  "tenbaihat": "Ngôi nhà hạnh phúc",
+  "tencasi": "Thủy Tiên",
+  "linkbaihat": "/static/app/Filenhac/Ngôi Nhà Hạnh Phúc  Thủy Tiên Official.mp3",
+  "theloai": "Unknown",
+  "thoigian": "5:28"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e12"
+  },
+  "tenbaihat": "Người bình thường",
+  "tencasi": "Vũ Cát Tường",
+  "linkbaihat": "/static/app/Filenhac/NGƯỜI BÌNH THƯỜNG  VŨ CÁT TƯỜNG  OFFICIAL VISUALIZER.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:44"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e13"
+  },
+  "tenbaihat": "Người lạ ơi",
+  "tencasi": "Châu Đăng Khoa ft Karik ft Orange",
+  "linkbaihat": "/static/app/Filenhac/Người Lạ Ơi  Official MV  Châu Đăng Khoa x Karik x Orange.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:48"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e14"
+  },
+  "tenbaihat": "Người ta có thương mình đâu",
+  "tencasi": "Trúc Nhân",
+  "linkbaihat": "/static/app/Filenhac/NGƯỜI TA CÓ THƯƠNG MÌNH ĐÂU  TRÚC NHÂN NTCTMD.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:48"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e15"
+  },
+  "tenbaihat": "Người ấy",
+  "tencasi": "Trịnh Thăng Bình",
+  "linkbaihat": "/static/app/Filenhac/Người Ấy   Trịnh Thăng Bình Lyrics.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:13"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e16"
+  },
+  "tenbaihat": "Ngốc",
+  "tencasi": "Hương Tràm",
+  "linkbaihat": "/static/app/Filenhac/NGỐC   Hương Tràm.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:52"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e17"
+  },
+  "tenbaihat": "Nâng chén tiêu sầu",
+  "tencasi": "Bích Phương",
+  "linkbaihat": "/static/app/Filenhac/NÂNG CHÉN TIÊU SẦU  BÍCH PHƯƠNG.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:25"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e18"
+  },
+  "tenbaihat": "Nơi tình yêu kết thúc",
+  "tencasi": "Bùi Anh Tuấn",
+  "linkbaihat": "/static/app/Filenhac/Nơi Tình Yêu Kết Thúc  lyric video   Bùi Anh Tuấn.mp3",
+  "theloai": "Unknown",
+  "thoigian": "5:18"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e19"
+  },
+  "tenbaihat": "Tiếng hóc xương cá lofi cực chill",
+  "tencasi": "LNK",
+  "linkbaihat": "/static/app/Filenhac/Tiếng_Hóc_Xương_Lofi_Cực_Chill.mp3",
+  "theloai": "Unknown",
+  "thoigian": "1:34"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e1a"
+  },
+  "tenbaihat": "Truyền thái y",
+  "tencasi": "Ngô Kiến Huy",
+  "linkbaihat": "/static/app/Filenhac/Truyền Thái Y  Lyric Ngô Kiến Huy x Masew x Đình Hà Uyên Thư  TTY.mp3",
+  "theloai": "Unknown",
+  "thoigian": "2:51"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e1b"
+  },
+  "tenbaihat": "Trái đất ôm Mặt Trời",
+  "tencasi": "Kai Đinh ft GREY D ft Hoàng Thùy Linh ",
+  "linkbaihat": "/static/app/Filenhac/Trái đất ôm Mặt trời    KAI ĐINH x GREY D x HOÀNG THUỲ LINH.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:34"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e1c"
+  },
+  "tenbaihat": "Từng yêu",
+  "tencasi": "Phan Duy Anh",
+  "linkbaihat": "/static/app/Filenhac/TỪNG YÊU  PHAN DUY ANH  HƯƠNG LY COVER.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:49"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e1d"
+  },
+  "tenbaihat": "Vạn sự tùy duyên",
+  "tencasi": "Thanh Hưng",
+  "linkbaihat": "/static/app/Filenhac/Vạn Sự Tùy Duyên  Thanh Hưng  Official Animation Music Video.mp3",
+  "theloai": "Unknown",
+  "thoigian": "5:03"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e1e"
+  },
+  "tenbaihat": "Đúng người đúng thời điểm",
+  "tencasi": "Thanh Hưng",
+  "linkbaihat": "/static/app/Filenhac/ĐÚNG NGƯỜI ĐÚNG THỜI ĐIỂM  THANH HƯNG  OFFICIAL LYRICS VIDEO.mp3",
+  "theloai": "Unknown",
+  "thoigian": "4:56"
+},
+{
+  "_id": {
+    "$oid": "6722482147598125766c9e1f"
+  },
+  "tenbaihat": "Thiên lý ơi",
+  "tencasi": "Jack",
+  "linkbaihat": "/static/app/Filenhac/THIEN_LY_OI_JACK_J97_x_PLAY_DATE_x_NOTHIN_ON_ME_AM_TEAM_REMIX_chuppa_chups.mp3",
+  "theloai": "Unknown",
+  "thoigian": "3:21"
+}]

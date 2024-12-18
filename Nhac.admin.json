@@ -1,0 +1,8 @@
+[{
+  "_id": {
+    "$oid": "673abb5c99f2250153c75bbc"
+  },
+  "ten": "Nguyễn Hồng Tuấn Hưng",
+  "password": "12345678",
+  "adminname": "hungga"
+}]
